@@ -27,29 +27,25 @@
   {{- range .Pages }}
     {{- $courseYear := 0 }}
     {{- $courseSemester := "" }}
+    {{- $isCurrent := false }}
     {{- if .Params.semester }}
       {{- $parts := split .Params.semester " " }}
       {{- if eq (len $parts) 2 }}
         {{- $courseSemester = index $parts 0 }}
         {{- $courseYear = int (index $parts 1) }}
-      {{- end }}
-    {{- end }}
-
-    {{- if and $courseYear $courseSemester }}
-      {{- $isCurrent := false }}
-      {{- if gt $courseYear $currentYear }}
-        {{- $isCurrent = true }}
-      {{- else if eq $courseYear $currentYear }}
-        {{- if or (eq $courseSemester $currentSemester) (and (eq $courseSemester "Fall") (eq $currentSemester "Summer")) }}
+        {{- if gt $courseYear $currentYear }}
           {{- $isCurrent = true }}
+        {{- else if eq $courseYear $currentYear }}
+          {{- if or (eq $courseSemester $currentSemester) (and (eq $courseSemester "Fall") (eq $currentSemester "Summer")) }}
+            {{- $isCurrent = true }}
+          {{- end }}
         {{- end }}
       {{- end }}
-
-      {{- if $isCurrent }}
-        {{- $currentCourses = $currentCourses | append . }}
-      {{- else }}
-        {{- $pastCourses = $pastCourses | append . }}
-      {{- end }}
+    {{- end }}
+    {{- if $isCurrent }}
+      {{- $currentCourses = $currentCourses | append . }}
+    {{- else }}
+      {{- $pastCourses = $pastCourses | append . }}
     {{- end }}
   {{- end }}
 
