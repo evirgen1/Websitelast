@@ -14,14 +14,13 @@
     {{ .Content }}
   </div>
 
+  <h2>Media Appearances</h2>
+  <p>Here you'll find my interviews, podcast appearances, and public talks. I regularly engage with media to discuss my research and expertise in human rights, state repression and contentious politics.</p>
+  <div class="media-appearances-section"></div>
+
   {{- $appearances := .Pages }}
   {{- if gt (len $appearances) 0 }}
   <section class="all-appearances">
-    <h2>Media Appearances</h2>
-    <p>Here you'll find my interviews, podcast appearances, and public talks. I regularly engage with media to discuss my research and expertise in human rights, state repression and contentious politics.</p>
-
-    <div class="media-appearances-section"></div>
-
     <h2 style="margin-top: 2.5rem;">All Appearances</h2>
     <ul class="appearance-list">
       {{- range $appearances.ByDate.Reverse }}
