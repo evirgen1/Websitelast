@@ -5,6 +5,7 @@ semester: "Spring 2022"
 level: "Undergraduate"
 role: "Teaching Assistant"
 summary: "Introductory survey of American politics and government, including a review of constitutional foundations, the organization and influence of elections and public opinion, and in-depth looks at the three branches of the national government."
+draft: false
 date: 2022-03-31
 layout: "single"
 ---

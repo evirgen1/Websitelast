@@ -5,6 +5,7 @@ course_number: "PLSC 502"
 level: "Graduate"
 role: "Teaching Assistant"
 summary: "This course is designed to introduce students to the use of formal models to approach social science problems."
+draft: false
 date: 2023-01-15
 layout: "single"
 ---
