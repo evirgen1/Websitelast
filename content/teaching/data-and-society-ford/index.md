@@ -5,6 +5,7 @@ semester: "Fall 2024"
 level: "Undergraduate"
 role: "Teaching Assistant"
 summary: "This course offers experience in discovering, manipulating, analyzing, and visualizing data drawn from various real-world professional, social, and cultural contexts."
+draft: "False"
 date: 2024-12-15
 layout: "single"
 ---
