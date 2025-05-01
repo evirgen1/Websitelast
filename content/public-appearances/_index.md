@@ -4,6 +4,4 @@ summary: "Media interviews, podcasts, and public talks"
 layout: "appearances"
 ---
 
-## Media Appearances
-
 
