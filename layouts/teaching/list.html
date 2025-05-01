@@ -24,7 +24,7 @@
   {{- $currentCourses := slice }}
   {{- $pastCourses := slice }}
 
-  {{- range .Pages }}
+  {{- range where .Site.RegularPages "Section" "teaching" }}
     {{- $courseYear := 0 }}
     {{- $courseSemester := "" }}
     {{- $isCurrent := false }}
