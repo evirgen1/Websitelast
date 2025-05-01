@@ -87,7 +87,7 @@
         {{- $years = $years | append $year }}
       {{- end }}
     {{- end }}
-    {{- $years = uniq $years | sort | sort.Reverse }}
+    {{- $years = sort (uniq $years) "value" "desc" }}
     
     {{- range $i, $year := $years }}
     <div class="year-section">
