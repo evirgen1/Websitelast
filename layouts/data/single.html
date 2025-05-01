@@ -1,0 +1,431 @@
+{{- define "main" }}
+
+<article class="dataset-page">
+  <header class="dataset-header">
+    <h1 class="dataset-title">{{ .Title }}</h1>
+    
+    <div class="dataset-meta">
+      {{- if .Params.dataset_type }}
+      <div class="dataset-detail">
+        <span class="detail-label">Type:</span>
+        <span class="detail-value">{{ .Params.dataset_type }}</span>
+      </div>
+      {{- end }}
+      
+      {{- if .Date }}
+      <div class="dataset-detail">
+        <span class="detail-label">Published:</span>
+        <span class="detail-value">{{ .Date.Format "January 2, 2006" }}</span>
+      </div>
+      {{- end }}
+      
+      {{- if .Params.last_updated }}
+      <div class="dataset-detail">
+        <span class="detail-label">Last Updated:</span>
+        <span class="detail-value">{{ .Params.last_updated }}</span>
+      </div>
+      {{- end }}
+      
+      {{- if .Params.license }}
+      <div class="dataset-detail">
+        <span class="detail-label">License:</span>
+        <span class="detail-value license">{{ .Params.license }}</span>
+      </div>
+      {{- end }}
+    </div>
+    
+    <div class="dataset-links">
+      {{- if .Params.download_url }}
+      <a href="{{ .Params.download_url }}" class="dataset-link download-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Download Dataset
+      </a>
+      {{- end }}
+      
+      {{- if .Params.documentation_url }}
+      <a href="{{ .Params.documentation_url }}" class="dataset-link docs-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Documentation
+      </a>
+      {{- end }}
+      
+      {{- if .Params.repository_url }}
+      <a href="{{ .Params.repository_url }}" class="dataset-link repo-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        Repository
+      </a>
+      {{- end }}
+    </div>
+    
+    {{- if .Params.summary }}
+    <div class="dataset-summary">
+      {{ .Params.summary }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if .Params.tags }}
+  <div class="dataset-tags">
+    <span class="tags-prefix">Topics:</span>
+    {{- range $index, $tag := .Params.tags }}
+      <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}" class="tag">{{ $tag }}</a>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  <div class="dataset-content">
+    {{ .Content }}
+  </div>
+  
+  {{- if .Params.related_publication }}
+  <div class="related-publication">
+    <h2>Related Publication</h2>
+    <div class="publication-box">
+      <p>{{ .Params.related_publication }}</p>
+      {{- if .Params.publication_url }}
+      <a href="{{ .Params.publication_url }}" class="publication-link" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        View Publication
+      </a>
+      {{- end }}
+    </div>
+  </div>
+  {{- end }}
+  
+  <div class="dataset-citation">
+    <h2>How to Cite</h2>
+    <div class="citation-box">
+      <div class="citation-content">
+        {{- if .Params.citation }}
+          {{ .Params.citation }}
+        {{- else }}
+          {{- $authors := "" }}
+          {{- range $index, $author := .Params.authors }}
+            {{- if eq $index 0 }}
+              {{- $names := split $author.name " " }}
+              {{- $lastName := index $names (sub (len $names) 1) }}
+              {{- $firstName := delimit (first (sub (len $names) 1) $names) " " }}
+              {{- $authors = printf "%s, %s" $lastName $firstName }}
+            {{- else }}
+              {{- $names := split $author.name " " }}
+              {{- $lastName := index $names (sub (len $names) 1) }}
+              {{- $firstName := delimit (first (sub (len $names) 1) $names) " " }}
+              {{- $authors = printf "%s & %s, %s" $authors $lastName $firstName }}
+            {{- end }}
+          {{- end }}
+          {{ $authors }} ({{ .Date.Format "2006" }}). {{ .Title }} [Data set]. {{ with .Site.Title }}{{ . }}.{{ end }} {{ .Permalink }}
+        {{- end }}
+      </div>
+      <button class="copy-citation" onclick="copyToClipboard('citation')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        Copy
+      </button>
+    </div>
+  </div>
+</article>
+
+<script>
+  function copyToClipboard(type) {
+    const element = document.querySelector('.citation-content');
+    const text = element.innerText;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      const button = document.querySelector('.copy-citation');
+      const originalText = button.innerText;
+      button.innerText = 'Copied!';
+      setTimeout(() => {
+        button.innerText = originalText;
+      }, 2000);
+    });
+  }
+</script>
+
+<style>
+  /* Dataset Page Styling */
+  .dataset-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .dataset-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .dataset-title {
+    margin-bottom: 1.2rem;
+  }
+  
+  .dataset-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .dataset-detail {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  
+  .detail-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+    color: var(--secondary);
+  }
+  
+  .detail-value {
+    color: var(--primary);
+  }
+  
+  .detail-value.license {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    background-color: #e0f2e9;
+    color: #2c7a51;
+  }
+  
+  .dataset-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dataset-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .download-link {
+    background-color: var(--primary);
+    color: var(--theme);
+  }
+  
+  .docs-link, .repo-link {
+    background-color: var(--tertiary);
+    color: var(--primary);
+  }
+  
+  .dataset-link:hover {
+    opacity: 0.85;
+  }
+  
+  .dataset-summary {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    padding: 1rem;
+    background-color: var(--code-bg);
+    border-radius: 5px;
+    border-left: 4px solid var(--primary);
+  }
+  
+  .dataset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  
+  .tags-prefix {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--tertiary);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    transition: opacity 0.2s;
+  }
+  
+  .tag:hover {
+    opacity: 0.85;
+  }
+  
+  .dataset-content {
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .dataset-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .dataset-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .dataset-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .dataset-content ul, .dataset-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  
+  .dataset-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .dataset-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dataset-content th {
+    text-align: left;
+    padding: 0.8rem;
+    background-color: var(--code-bg);
+    border-bottom: 2px solid var(--border);
+  }
+  
+  .dataset-content td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .related-publication {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  
+  .related-publication h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .publication-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--code-bg);
+    border-radius: 5px;
+  }
+  
+  .publication-box p {
+    margin: 0;
+    font-style: italic;
+  }
+  
+  .publication-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--primary);
+    color: var(--theme);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
+  
+  .dataset-citation {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  
+  .dataset-citation h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .citation-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: var(--code-bg);
+    border-radius: 5px;
+  }
+  
+  .citation-content {
+    flex: 1;
+    line-height: 1.5;
+    font-size: 0.9rem;
+  }
+  
+  .copy-citation {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--primary);
+    color: var(--theme);
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  
+  .copy-citation:hover {
+    opacity: 0.85;
+  }
+  
+  @media (max-width: 768px) {
+    .dataset-meta {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .dataset-links {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .dataset-link {
+      width: 100%;
+    }
+    
+    .citation-box {
+      flex-direction: column;
+    }
+    
+    .copy-citation {
+      margin-left: 0;
+      margin-top: 0.8rem;
+      align-self: flex-end;
+    }
+    
+    .publication-box {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .publication-link {
+      margin-left: 0;
+      margin-top: 0.8rem;
+    }
+  }
+</style>
+
+{{- end }}{{/* end main */}} 

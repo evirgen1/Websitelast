@@ -1,0 +1,250 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description }}
+  </div>
+  {{- end }}
+  {{- if .Content }}
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  {{- end }}
+</header>
+
+<div class="research-container">
+  <section class="featured-publications">
+    <h2>Featured Publications</h2>
+    <div class="publications-grid">
+      {{- range where (where site.RegularPages "Type" "research") "Params.featured" true }}
+      <div class="publication-card">
+        <h3 class="publication-title">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h3>
+        <div class="publication-meta">
+          <div class="pub-authors">
+            {{- range $index, $author := .Params.authors }}
+            {{- if $index }}, {{ end }}
+            {{- if $author.url }}
+            <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
+            {{- else }}
+            {{ $author.name }}
+            {{- end }}
+            {{- end }}
+          </div>
+          <div class="pub-journal">{{ .Params.publication }}</div>
+          <div class="pub-date">{{ .Date.Format "January 2006" }}</div>
+        </div>
+        <div class="publication-abstract">
+          {{ .Params.abstract | truncate 200 }}
+        </div>
+        <div class="publication-links">
+          <a href="{{ .Permalink }}" class="pub-details">Details</a>
+          {{- range .Params.links }}
+          <a href="{{ .url }}" class="pub-link" target="_blank" rel="noopener">{{ .name }}</a>
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="all-publications">
+    <h2>All Publications</h2>
+    {{- $publicationPages := where (where site.RegularPages "Type" "research") "Params.publication_types" "intersect" (slice "journal-article" "conference-paper" "book-chapter") }}
+    <ul class="publication-list">
+      {{- range $publicationPages }}
+      <li class="publication-item">
+        <div class="pub-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+        <div class="pub-authors">
+          {{- range $index, $author := .Params.authors }}
+          {{- if $index }}, {{ end }}
+          {{- if $author.url }}
+          <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
+          {{- else }}
+          {{ $author.name }}
+          {{- end }}
+          {{- end }}
+        </div>
+        <div class="pub-journal">{{ .Params.publication }}</div>
+        <div class="pub-links">
+          <a href="{{ .Permalink }}" class="pub-details">Details</a>
+          {{- range .Params.links }}
+          <a href="{{ .url }}" class="pub-link">{{ .name }}</a>
+          {{- end }}
+        </div>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+
+  <section class="working-papers">
+    <h2>Working Papers</h2>
+    <ul class="publication-list">
+      {{- range where (where site.RegularPages "Type" "research") "Params.publication_types" "intersect" (slice "working-paper" "preprint") }}
+      <li class="publication-item">
+        <div class="pub-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+        <div class="pub-authors">
+          {{- range $index, $author := .Params.authors }}
+          {{- if $index }}, {{ end }}
+          {{- if $author.url }}
+          <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
+          {{- else }}
+          {{ $author.name }}
+          {{- end }}
+          {{- end }}
+        </div>
+        <div class="pub-status">{{ with .Params.status }}{{ . }}{{ else }}Working Paper{{ end }}</div>
+        <div class="pub-links">
+          <a href="{{ .Permalink }}" class="pub-details">Details</a>
+          {{- range .Params.links }}
+          <a href="{{ .url }}" class="pub-link">{{ .name }}</a>
+          {{- end }}
+        </div>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+</div>
+
+<style>
+  /* Research Page Styling */
+  .research-container {
+    margin-top: 1.5rem;
+  }
+  
+  .featured-publications {
+    margin-bottom: 3rem;
+  }
+  
+  .publications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .publication-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background-color: var(--entry);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .publication-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .publication-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .publication-meta {
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  
+  .publication-abstract {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .publication-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .pub-link, .pub-details {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    background-color: var(--tertiary);
+    color: var(--primary);
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .pub-details {
+    background-color: var(--primary);
+    color: var(--theme);
+  }
+  
+  .pub-link:hover, .pub-details:hover {
+    opacity: 0.8;
+  }
+  
+  .year-group {
+    margin-bottom: 2rem;
+  }
+  
+  .year-heading {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .publication-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .publication-item {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px dashed var(--border);
+  }
+  
+  .publication-item:last-child {
+    border-bottom: none;
+  }
+  
+  .pub-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  
+  .pub-authors {
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+  }
+  
+  .pub-journal {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    font-size: 0.95rem;
+  }
+  
+  .pub-status {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--secondary);
+  }
+  
+  /* Add paper-status style for list view */
+  .paper-status {
+    padding: 0.2rem 0.5rem;
+    background-color: #ffd96a;
+    color: #614b00;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .publications-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{{- end }}{{/* end main */}} 

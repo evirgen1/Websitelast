@@ -1,0 +1,30 @@
+# Hugo default output directory
+/public/
+
+# Generated files
+.DS_Store
+*.log
+
+# Hugo binary directory
+/hugo-bin/
+
+# Temporary files
+hugo.zip
+website.zip
+
+# Dependency directories
+/node_modules/
+/resources/_gen/
+/assets/jsconfig.json
+/.hugo_build.lock
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo 

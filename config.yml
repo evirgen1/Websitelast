@@ -1,0 +1,121 @@
+baseURL: "https://yourname.github.io/"
+title: "Yusuf Evirgen"
+theme: "PaperMod"
+
+# Replace deprecated paginate
+pagination:
+  pagerSize: 5
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minifyOutput: true
+
+# Add ignore logs to suppress HTML warnings
+ignoreErrors: ["error-remote-getjson"]
+ignoreLogs: ["warning-goldmark-raw-html"]
+
+params:
+  env: production
+  title: "Yusuf Evirgen"
+  description: "Ph.D Candidate at Binghamton University, SUNY"
+  author: "Yusuf Evirgen"
+  
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowShareButtons: false
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  disableSpecial1stPost: false
+  comments: false
+  
+  # Home Page Settings
+  profileMode:
+    enabled: true
+    title: "Yusuf Evirgen"
+    imageUrl: "profile.jpg"
+    imageWidth: 200
+    imageHeight: 200
+    
+    # Add custom bio text below the profile
+    customBio: |
+      I am a Ph.D. candidate at Binghamton University, SUNY, researching contentious politics, coups, human rights, and state repression. My current work examines when and how leaders use state apparatus to repress opposition in authoritarian countries. In this venture, I combine innovative quantitative methodologies with in-depth interviews and fieldwork. I am particularly interested in the political dynamics of the Middle East and North Africa region.
+
+      My work has been published in the [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp). My work has been recognized with several awards, including Northeastern Political Science Association Best Paper Award in 2024.
+
+  # Social Icons
+  socialIcons:
+    - name: "email"
+      url: "mailto:yevirge1@binghamton.edu"
+    - name: "github"
+      url: "https://github.com/evirgen1"
+    - name: "googlescholar"
+      url: "https://scholar.google.com/citations?user=8_PutLUAAAAJ&hl=en&oi=ao"
+    - name: "twitter"
+      url: "https://x.com/evirgenyusuff"
+    - name: "bluesky"
+      url: "https://bsky.app/profile/yusufevirgen.bsky.social"
+    - name: "cv"
+      url: "cv-evirgen.pdf"
+
+  # Display cover images in lists
+  cover:
+    linkFullImages: true
+    hiddenInList: false
+
+  # For code highlighting
+  assets:
+    disableHLJS: false
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+
+  # Math rendering with KaTeX
+  math: true
+
+menu:
+  main:
+    - identifier: "about"
+      name: "About"
+      url: "/"
+      weight: 10
+    - identifier: "teaching"
+      name: "Teaching"
+      url: "/teaching/"
+      weight: 20
+    - identifier: "research"
+      name: "Research"
+      url: "/research/"
+      weight: 30
+    - identifier: "data"
+      name: "Data"
+      url: "/data/"
+      weight: 40
+    - identifier: "public-appearances"
+      name: "Public Appearances"
+      url: "/public-appearances/"
+      weight: 45
+    - identifier: "contact"
+      name: "Contact"
+      url: "/contact/"
+      weight: 50
+
+# For search functionality
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# For code syntax highlighting
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: "monokai" 

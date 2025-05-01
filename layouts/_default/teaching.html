@@ -1,0 +1,345 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description }}
+  </div>
+  {{- end }}
+  {{- if .Content }}
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+  {{- end }}
+</header>
+
+<div class="teaching-container">
+  {{- /* Get current date and determine current semester */ -}}
+  {{- $now := now }}
+  {{- $currentYear := $now.Year }}
+  {{- $currentMonth := $now.Month }}
+  {{- $isSpring := ge $currentMonth 1 | and (le $currentMonth 5) }}
+  {{- $isFall := ge $currentMonth 8 | and (le $currentMonth 12) }}
+  {{- $currentSemester := "" }}
+  {{- if $isSpring }}
+    {{- $currentSemester = printf "Spring %d" $currentYear }}
+  {{- else if $isFall }}
+    {{- $currentSemester = printf "Fall %d" $currentYear }}
+  {{- else }}
+    {{- $currentSemester = printf "Summer %d" $currentYear }}
+  {{- end }}
+
+  <section class="current-courses">
+    <h2>Current Courses</h2>
+    <div class="course-grid">
+      {{- range where site.RegularPages "Type" "teaching" }}
+        {{- $courseSemester := .Params.semester }}
+        {{- $courseYear := int (index (split $courseSemester " ") 1) }}
+        {{- $courseSeason := index (split $courseSemester " ") 0 }}
+        {{- $isCurrent := false }}
+        
+        {{- /* Check if course is current or upcoming */ -}}
+        {{- if eq $courseYear $currentYear }}
+          {{- if eq $courseSeason "Spring" }}
+            {{- $isCurrent = $isSpring }}
+          {{- else if eq $courseSeason "Fall" }}
+            {{- $isCurrent = $isFall }}
+          {{- end }}
+        {{- else if gt $courseYear $currentYear }}
+          {{- $isCurrent = true }}
+        {{- end }}
+
+        {{- if $isCurrent }}
+        <div class="course-card">
+          <div class="course-content">
+            <h3 class="course-title">
+              <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </h3>
+            <div class="course-meta-badges">
+              {{- if .Params.course_number }}
+              <span class="badge badge-number">{{ .Params.course_number }}</span>
+              {{- end }}
+              <span class="badge badge-semester">{{ .Params.semester }}</span>
+              {{- if .Params.level }}
+              <span class="badge badge-level" data-level="{{ .Params.level }}">{{ .Params.level }}</span>
+              {{- end }}
+              {{- if .Params.role }}
+              <span class="badge badge-role">{{ .Params.role }}</span>
+              {{- end }}
+            </div>
+          </div>
+        </div>
+        {{- end }}
+      {{- end }}
+    </div>
+  </section>
+
+  <section class="past-courses">
+    <h2>Past Courses</h2>
+    {{- $pastCourses := slice }}
+    {{- range where site.RegularPages "Type" "teaching" }}
+      {{- $courseSemester := .Params.semester }}
+      {{- $courseYear := int (index (split $courseSemester " ") 1) }}
+      {{- $courseSeason := index (split $courseSemester " ") 0 }}
+      {{- $isPast := false }}
+      
+      {{- /* Check if course is past */ -}}
+      {{- if lt $courseYear $currentYear }}
+        {{- $isPast = true }}
+      {{- else if eq $courseYear $currentYear }}
+        {{- if eq $courseSeason "Spring" }}
+          {{- $isPast = not $isSpring }}
+        {{- else if eq $courseSeason "Fall" }}
+          {{- $isPast = not $isFall }}
+        {{- end }}
+      {{- end }}
+
+      {{- if $isPast }}
+        {{- $pastCourses = $pastCourses | append . }}
+      {{- end }}
+    {{- end }}
+
+    {{- range $pastCourses.GroupByDate "2006" }}
+    <div class="year-group">
+      <h3 class="year-heading">{{ .Key }}</h3>
+      <ul class="course-list">
+        {{- range .Pages }}
+        <li class="course-item">
+          <div class="course-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+          <div class="course-meta-badges">
+            {{- if .Params.course_number }}
+            <span class="badge badge-number">{{ .Params.course_number }}</span>
+            {{- end }}
+            <span class="badge badge-semester">{{ .Params.semester }}</span>
+            {{- if .Params.level }}
+            <span class="badge badge-level" data-level="{{ .Params.level }}">{{ .Params.level }}</span>
+            {{- end }}
+            {{- if .Params.role }}
+            <span class="badge badge-role">{{ .Params.role }}</span>
+            {{- end }}
+          </div>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+    {{- end }}
+  </section>
+</div>
+
+<style>
+  :root {
+    --accent-blue: #2563eb;
+    --accent-orange: #f59e42;
+    --accent-blue-light: #e6edfa;
+    --accent-orange-light: #fff4e6;
+  }
+  /* Teaching Page Styling */
+  .teaching-container {
+    margin-top: 1.5rem;
+  }
+  
+  .current-courses {
+    margin-bottom: 3rem;
+  }
+  
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .course-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--entry);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .course-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .course-image {
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .course-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .course-title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .course-meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 0.25em 0.8em;
+    font-size: 0.95em;
+    border-radius: 16px;
+    font-weight: 500;
+    background: #f2f2f2;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    letter-spacing: 0.01em;
+  }
+  
+  .badge-number {
+    background: #e3e8f0;
+    color: #2d3a4a;
+    border-color: #cfd8e3;
+  }
+  
+  .badge-semester {
+    background: var(--accent-orange);
+    color: #fff;
+    border-color: var(--accent-orange);
+  }
+  
+  .badge-level {
+    background: #fff7ed;
+    color: #d97706;
+    border: 1.5px solid #f59e42;
+  }
+  
+  .badge-level[data-level="Undergraduate"] {
+    background: #fff7ed;
+    color: #d97706;
+    border: 1.5px solid #f59e42;
+  }
+  
+  .badge-level[data-level="Graduate"] {
+    background: #fef6fb;
+    color: #a21caf;
+    border: 1.5px solid #f59e42;
+  }
+  
+  .badge-role {
+    background: #666;
+    color: #fff;
+    border-color: #444;
+  }
+  
+  .course-summary {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    flex-grow: 1;
+  }
+  
+  .course-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+  
+  .course-details, .course-syllabus, .course-website {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .course-details {
+    background-color: var(--primary);
+    color: var(--theme);
+  }
+  
+  .course-syllabus, .course-website {
+    background-color: var(--tertiary);
+    color: var(--primary);
+  }
+  
+  .course-details:hover, .course-syllabus:hover, .course-website:hover {
+    opacity: 0.8;
+  }
+  
+  .year-group {
+    margin-bottom: 2rem;
+  }
+  
+  .year-heading {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .course-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .course-item {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .course-item:last-child {
+    border-bottom: none;
+  }
+  
+  .course-item .course-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    flex: 1;
+  }
+  
+  .course-item .course-meta {
+    margin-bottom: 0;
+    min-width: 150px;
+  }
+  
+  .course-item .course-links {
+    margin-top: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .course-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .course-item .course-meta {
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+
+{{- end }}{{/* end main */}} 

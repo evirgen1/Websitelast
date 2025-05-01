@@ -1,0 +1,204 @@
+{{- define "main" }}
+<div class="teaching-page">
+  <header class="teaching-header">
+    <h1>{{ .Title }}</h1>
+    {{- if .Params.summary }}
+    <div class="teaching-summary">
+      {{ .Params.summary }}
+    </div>
+    {{- end }}
+    
+    <!-- Extract text from _index.md content -->
+    {{ .Content }}
+  </header>
+
+  {{- $currentYear := now.Year }}
+  {{- $currentMonth := now.Month }}
+  {{- $currentSemester := "Fall" }}
+  {{- if and (ge $currentMonth 1) (le $currentMonth 5) }}
+    {{- $currentSemester = "Spring" }}
+  {{- else if and (ge $currentMonth 6) (le $currentMonth 8) }}
+    {{- $currentSemester = "Summer" }}
+  {{- end }}
+
+  {{- $currentCourses := slice }}
+  {{- $pastCourses := slice }}
+
+  {{- range .Pages }}
+    {{- $courseYear := 0 }}
+    {{- $courseSemester := "" }}
+    {{- if .Params.semester }}
+      {{- $parts := split .Params.semester " " }}
+      {{- if eq (len $parts) 2 }}
+        {{- $courseSemester = index $parts 0 }}
+        {{- $courseYear = int (index $parts 1) }}
+      {{- end }}
+    {{- end }}
+
+    {{- if and $courseYear $courseSemester }}
+      {{- $isCurrent := false }}
+      {{- if gt $courseYear $currentYear }}
+        {{- $isCurrent = true }}
+      {{- else if eq $courseYear $currentYear }}
+        {{- if or (eq $courseSemester $currentSemester) (and (eq $courseSemester "Fall") (eq $currentSemester "Summer")) }}
+          {{- $isCurrent = true }}
+        {{- end }}
+      {{- end }}
+
+      {{- if $isCurrent }}
+        {{- $currentCourses = $currentCourses | append . }}
+      {{- else }}
+        {{- $pastCourses = $pastCourses | append . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $currentCourses }}
+  <section class="current-courses">
+    <h2>Current Courses</h2>
+    <div class="course-grid">
+      {{- range $currentCourses }}
+      <div class="course-card">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{- if .Params.course_number }}
+        <div class="course-number">{{ .Params.course_number }}</div>
+        {{- end }}
+        {{- if .Params.semester }}
+        <div class="course-semester">{{ .Params.semester }}</div>
+        {{- end }}
+        {{- if .Params.summary }}
+        <div class="course-summary">{{ .Params.summary }}</div>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- if $pastCourses }}
+  <section class="past-courses">
+    <h2>Past Courses</h2>
+    
+    {{- $years := slice }}
+    {{- range $pastCourses }}
+      {{- $parts := split .Params.semester " " }}
+      {{- if eq (len $parts) 2 }}
+        {{- $year := int (index $parts 1) }}
+        {{- $years = $years | append $year }}
+      {{- end }}
+    {{- end }}
+    {{- $years = uniq $years | sort | sort.Reverse }}
+    
+    {{- range $i, $year := $years }}
+    <div class="year-section">
+      <h3 class="year-title">{{ $year }}</h3>
+      <div class="course-grid">
+        {{- $yearCourses := where $pastCourses "Params.semester" "like" (printf "%% %d" $year) }}
+        {{- range $yearCourses }}
+        <div class="course-card">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{- if .Params.course_number }}
+          <div class="course-number">{{ .Params.course_number }}</div>
+          {{- end }}
+          {{- if .Params.semester }}
+          <div class="course-semester">{{ .Params.semester }}</div>
+          {{- end }}
+          {{- if .Params.summary }}
+          <div class="course-summary">{{ .Params.summary }}</div>
+          {{- end }}
+        </div>
+        {{- end }}
+      </div>
+    </div>
+    {{- end }}
+  </section>
+  {{- end }}
+</div>
+
+<style>
+  .teaching-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .teaching-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .teaching-summary {
+    font-size: 1.2rem;
+    color: var(--secondary);
+    max-width: 800px;
+    margin: 1rem auto;
+  }
+
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .course-card {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.2s;
+  }
+
+  .course-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .course-card h3 {
+    margin: 0 0 1rem 0;
+  }
+
+  .course-card h3 a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .course-number {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .course-semester {
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--primary);
+    color: var(--theme);
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .course-summary {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--secondary);
+  }
+
+  .year-section {
+    margin-bottom: 3rem;
+  }
+
+  .year-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .course-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{{- end }} 

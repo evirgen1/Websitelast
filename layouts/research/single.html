@@ -1,0 +1,448 @@
+{{- define "main" }}
+
+<article class="research-article">
+  <header class="article-header">
+    <h1 class="article-title">{{ .Title }}</h1>
+    
+    <div class="article-meta">
+      <div class="article-authors">
+        {{- range $index, $author := .Params.authors }}
+          {{- if $index }}, {{ end }}
+          {{- if $author.url }}
+            <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
+          {{- else }}
+            {{ $author.name }}
+          {{- end }}
+        {{- end }}
+      </div>
+      
+      {{- if .Params.publication }}
+      <div class="article-journal">
+        <span class="meta-label">Published in:</span>
+        <span class="meta-value paper-status">{{ .Params.publication }}</span>
+      </div>
+      {{- end }}
+      
+      {{- if .Params.status }}
+      <div class="article-status">
+        <span class="meta-label">Status:</span>
+        <span class="meta-value paper-status">{{ .Params.status }}</span>
+      </div>
+      {{- end }}
+      
+      <div class="article-date">
+        <span class="meta-label">Date:</span>
+        <span class="meta-value">{{ .Date.Format "January 2, 2006" }}</span>
+      </div>
+      
+      {{- if .Params.doi }}
+      <div class="article-doi">
+        <span class="meta-label">DOI:</span>
+        <a href="https://doi.org/{{ .Params.doi }}" target="_blank" rel="noopener">{{ .Params.doi }}</a>
+      </div>
+      {{- end }}
+      
+      {{- if .Params.publication_types }}
+      <div class="article-type">
+        <span class="meta-label">Type:</span>
+        <span class="meta-value">
+          {{- range $index, $type := .Params.publication_types }}
+            {{- if $index }}, {{ end }}
+            {{- if eq $type "journal-article" }}Journal Article
+            {{- else if eq $type "conference-paper" }}Conference Paper
+            {{- else if eq $type "book-chapter" }}Book Chapter
+            {{- else if eq $type "working-paper" }}Working Paper
+            {{- else if eq $type "preprint" }}Preprint
+            {{- else }}{{ $type }}
+            {{- end }}
+          {{- end }}
+        </span>
+      </div>
+      {{- end }}
+    </div>
+    
+    {{- if .Params.abstract }}
+    <div class="article-abstract">
+      <h2>Abstract</h2>
+      <p>{{ .Params.abstract }}</p>
+    </div>
+    {{- end }}
+    
+    <div class="article-links">
+      {{- if .Params.links }}
+        <h2>Links</h2>
+        <ul class="links-list">
+          {{- range .Params.links }}
+          <li>
+            <a href="{{ .url }}" class="btn btn-link" target="_blank" rel="noopener">
+              {{- if eq .name "Publisher Version" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              {{- else if eq .name "PDF" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              {{- else if eq .name "Preprint (PDF)" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              {{- else if eq .name "Replication Files" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              {{- else if eq .name "Code" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              {{- else if eq .name "Code Repository" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              {{- else if eq .name "Appendix" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              {{- else if eq .name "Supplementary Materials" }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              {{- else }}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              {{- end }}
+              {{ .name }}
+            </a>
+          </li>
+          {{- end }}
+        </ul>
+      {{- end }}
+    </div>
+  </header>
+
+  {{- if .Params.tags }}
+  <div class="article-tags">
+    <span class="tags-prefix">Topics:</span>
+    {{- range $index, $tag := .Params.tags }}
+      <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}" class="tag">{{ $tag }}</a>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  <div class="article-content">
+    {{ .Content }}
+  </div>
+  
+  <div class="article-citation">
+    <h2>Citation</h2>
+    <div class="citation-box">
+      <div class="citation-content">
+        {{- $authors := "" }}
+        {{- range $index, $author := .Params.authors }}
+          {{- if eq $index 0 }}
+            {{- $names := split $author.name " " }}
+            {{- $lastName := index $names (sub (len $names) 1) }}
+            {{- $firstName := delimit (first (sub (len $names) 1) $names) " " }}
+            {{- $authors = printf "%s, %s" $lastName $firstName }}
+          {{- else }}
+            {{- $names := split $author.name " " }}
+            {{- $lastName := index $names (sub (len $names) 1) }}
+            {{- $firstName := delimit (first (sub (len $names) 1) $names) " " }}
+            {{- $authors = printf "%s & %s, %s" $authors $lastName $firstName }}
+          {{- end }}
+        {{- end }}
+        {{ $authors }} ({{ .Date.Format "2006" }}). {{ .Title }}. {{ with .Params.publication }}<em>{{ . }}</em>{{ end }}{{ with .Params.doi }}. https://doi.org/{{ . }}{{ end }}
+      </div>
+      <button class="copy-citation" onclick="copyToClipboard('citation')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        Copy
+      </button>
+    </div>
+    
+    <div class="citation-box">
+      <div class="citation-content bibtex" id="bibtex">
+        @article{
+          {{- $firstAuthor := index .Params.authors 0 }}
+          {{- $names := split $firstAuthor.name " " }}
+          {{- $lastName := index $names (sub (len $names) 1) }}
+          {{- printf "%s%s" (lower $lastName) (dateFormat "2006" .Date) }},
+          title = { {{- .Title -}} },
+          author = { {{- range $index, $author := .Params.authors }}{{- if $index }} and {{ end }}{{ $author.name }}{{ end -}} },
+          journal = { {{- if in .Params.publication_types "working-paper" -}}Unpublished Manuscript{{- else if in .Params.publication_types "preprint" -}}Unpublished Manuscript{{- else if .Params.publication -}}{{ .Params.publication }}{{- else -}}Unpublished Manuscript{{- end -}} },
+          year = { {{- dateFormat "2006" .Date -}} },
+          {{- with .Params.doi }}
+          doi = { {{- . -}} },
+          {{- end }}
+          url = { {{- .Permalink -}} }
+        }
+      </div>
+      <button class="copy-citation" onclick="copyToClipboard('bibtex')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        Copy BibTeX
+      </button>
+    </div>
+  </div>
+</article>
+
+<script>
+  function copyToClipboard(type) {
+    const element = document.querySelector(type === 'bibtex' ? '.bibtex' : '.citation-content:not(.bibtex)');
+    const text = element.innerText;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      const button = document.querySelector(type === 'bibtex' ? 'button:nth-of-type(2)' : 'button:nth-of-type(1)');
+      const originalText = button.innerText;
+      button.innerText = 'Copied!';
+      setTimeout(() => {
+        button.innerText = originalText;
+      }, 2000);
+    });
+  }
+</script>
+
+<style>
+  /* Research Article Styling */
+  .research-article {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .article-header {
+    margin-bottom: 2rem;
+  }
+  
+  .article-title {
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .article-meta {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .article-authors {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .article-journal, .article-date, .article-doi, .article-type, .article-status {
+    margin-bottom: 0.3rem;
+  }
+  
+  .meta-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+    color: var(--secondary);
+  }
+  
+  .paper-status {
+    padding: 0.2rem 0.5rem;
+    background-color: #ffd96a;
+    color: #614b00;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .article-abstract {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--code-bg);
+    border-radius: 5px;
+  }
+  
+  .article-abstract h2 {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
+  
+  .article-abstract p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .article-links {
+    margin-bottom: 1.5rem;
+  }
+  
+  .article-links h2 {
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+  }
+  
+  .links-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: var(--theme);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+  
+  .btn-link:hover {
+    opacity: 0.85;
+  }
+  
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  
+  .tags-prefix {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--secondary);
+  }
+  
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--tertiary);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    transition: opacity 0.2s;
+  }
+  
+  .tag:hover {
+    opacity: 0.85;
+  }
+  
+  .article-content {
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  
+  .article-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .article-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .article-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .article-content ul, .article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  
+  .article-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 1.5rem 0;
+  }
+  
+  .article-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .article-content th {
+    text-align: left;
+    padding: 0.8rem;
+    background-color: var(--code-bg);
+    border-bottom: 2px solid var(--border);
+  }
+  
+  .article-content td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .article-content tr:nth-child(even) {
+    background-color: var(--code-bg);
+  }
+  
+  .article-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--primary);
+    background-color: var(--code-bg);
+    font-style: italic;
+  }
+  
+  .article-citation {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  
+  .article-citation h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .citation-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: var(--code-bg);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  .citation-content {
+    flex: 1;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+  
+  .bibtex {
+    font-family: monospace;
+    font-size: 0.85rem;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  
+  .copy-citation {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    background-color: var(--primary);
+    color: var(--theme);
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  
+  .copy-citation:hover {
+    opacity: 0.85;
+  }
+  
+  @media (max-width: 768px) {
+    .citation-box {
+      flex-direction: column;
+    }
+    
+    .copy-citation {
+      margin-left: 0;
+      margin-top: 0.8rem;
+      align-self: flex-end;
+    }
+  }
+</style>
+
+{{- end }}{{/* end main */}} 
