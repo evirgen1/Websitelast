@@ -89,20 +89,22 @@
     <div class="year-section">
       <h3 class="year-title">{{ $year }}</h3>
       <div class="course-grid">
-        {{- $yearCourses := where $pastCourses "Params.semester" "like" (printf "%% %d" $year) }}
-        {{- range $yearCourses }}
-        <div class="course-card">
-          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          {{- if .Params.course_number }}
-          <div class="course-number">{{ .Params.course_number }}</div>
+        {{- range $pastCourses }}
+          {{- $parts := split .Params.semester " " }}
+          {{- if and (eq (len $parts) 2) (eq (index $parts 1) (printf "%d" $year)) }}
+          <div class="course-card">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            {{- if .Params.course_number }}
+            <div class="course-number">{{ .Params.course_number }}</div>
+            {{- end }}
+            {{- if .Params.semester }}
+            <div class="course-semester">{{ .Params.semester }}</div>
+            {{- end }}
+            {{- if .Params.summary }}
+            <div class="course-summary">{{ .Params.summary }}</div>
+            {{- end }}
+          </div>
           {{- end }}
-          {{- if .Params.semester }}
-          <div class="course-semester">{{ .Params.semester }}</div>
-          {{- end }}
-          {{- if .Params.summary }}
-          <div class="course-summary">{{ .Params.summary }}</div>
-          {{- end }}
-        </div>
         {{- end }}
       </div>
     </div>
