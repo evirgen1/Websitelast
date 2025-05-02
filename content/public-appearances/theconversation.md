@@ -1,6 +1,6 @@
 ---
 title: "Terrorists weigh risks to their reputation when deciding which crises to exploit − new research"
-date: 2024-03-15
+date: 2024-05-01
 venue: "The Conversation"
 summary: "Terrorist attacks are more common during security and economic crises, but they decrease during humanitarian disasters."
 draft: false
