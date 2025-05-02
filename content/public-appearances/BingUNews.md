@@ -1,6 +1,6 @@
 ---
 title: "Terrorists time their attacks during periods of security or financial crisis"
-date: 2024-03-15
+date: 2025-03-15
 venue: "BingUNews"
 summary: "Reputation is crucial for terrorist groups because it affects their ability to gain public support, attract recruits, and negotiate with governments."
 draft: false
