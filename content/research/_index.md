@@ -6,4 +6,4 @@ layout: "research"
 
 ## Publications
 
-My research focuses on [your research focus area]. Below you'll find my published work organized by type and year. 
+My research focuses on state repression, human rights, coups, and contentious politics. Below you'll find my published work organized by type and year. 
