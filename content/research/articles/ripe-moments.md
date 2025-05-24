@@ -5,7 +5,7 @@ authors:
   - name: "Seden Akcinaroglu"
     url: "/"
   - name: "Yusuf Evirgen"
-    url: "https://example.com/alexjohnson"
+    url: "/"
 publication: "Conflict Management and Peace Science"
 publication_types: ["journal-article"]
 doi: "10.1177/07388942251317110"

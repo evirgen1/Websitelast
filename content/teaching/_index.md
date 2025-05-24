@@ -1,6 +1,5 @@
 ---
 title: "Teaching"
-summary: "Courses and teaching materials"
 layout: "teaching"
 ---
 
