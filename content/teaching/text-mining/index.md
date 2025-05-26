@@ -3,104 +3,154 @@ title: "Text Mining"
 course_number: "DIDA 310"
 semester: "Summer 2025"
 level: "Undergraduate"
-summary: "A graduate-level algorithms course focusing on advanced algorithmic techniques, complexity analysis, and specialized algorithms for specific problem domains. Students will implement algorithms and analyze their performance through practical assignments."
+summary: "An undergraduate-level text mining course that emphasizes using Python and standard libraries to perform basic data analysis, word counts, classification, and identify major trends in text documents."
 syllabus: "/files/syllabi/cs430-fall2023.pdf"
-course_site: "https://example.edu/courses/cs430"
 date: 2025-03-31
 layout: "single"
 ---
 
 ## Overview
 
-This course is an introduction of the methods and theory of quantitative analysis of documents and natural language processing. Students will learn to use modern tools and Python packages to analyze texts as individual words, sentences, and entire documents. Topics may include word counting, topic modelling, machine translation, regular expressions, and sentiment analysis. Prior programming experience is useful. This course is only open to students with sophomore standing or higher.
+In this course, students will learn to use Python and standard libraries to perform basic data analysis, word counting, classification, and uncover major trends in documents. Special focus will be paid to how natural language processing can be used in the service of social good and the prevention of genocide and mass atrocities. This will be done through the examination of datasets including internet hate speech, truth and reconciliation commission proceedings, and historic records of targeted mass killings.
+
+
+## Office Hours
+
+- Wednesdays: 2:30 PM - 4:30 PM on [Zoom](https://binghamton.zoom.us/j/7841657732?pwd=UXBNSkZzbFdHa1RTZG9hWHh3UythQT09). 
+- Or by appointment
+
+## Accessibility
+
+If you have a documented disability, anticipate needing any type of accommodation in this course, or have questions/concerns about access, please tell me as soon as possible. Reasonable accommodations will be made for all students with disabilities, but it is your responsibility to inform me early in the term. I strongly encourage you to register any disability with the Services for Students with Disabilities (SSD) Office.
+
+## AI Usage Policy
+
+The use of Artificial Intelligence (AI) tools (such as ChatGPT, Copilot, or similar generative AI platforms) is **strictly prohibited** in this course. Assignments, projects, and all submitted work must reflect your own understanding and effort.
+
+To enhance your learning and problem-solving skills, you are **strongly encouraged** to use the sample code and guidance provided in the course materials available on Brightspace.
+
+If you encounter difficulties in coding tasks:
+
+- First, consult the course materials and lecture notes.
+
+- Second, you may use reputable online resources or the recommended course textbook. However, you must properly cite any external sources used.
+
+- If you are still unable to resolve the issue, please reach out to me via email or visit during my office hours for additional support.
+
+This policy is designed to support your learning and ensure academic integrity. Violations may result in disciplinary action in accordance with the university's academic conduct policies.
+
 
 ## Course Content
 
-### Algorithmic Paradigms
-- Dynamic Programming Advanced Techniques
-- Amortized Analysis
-- Randomized Algorithms
-- Approximation Algorithms
-- Online Algorithms
+### Python for Data Science
+- Basic programming concepts: math, functions, variables, iteration, conditionals
+- Basic data structures: strings, lists, and data frames
+- Data cleaning (pandas)
+- Data visualization (matplotlib and seaborn)
 
-### Complexity Theory
-- NP-Completeness (review and extensions)
-- PSPACE and EXPTIME
-- Parameterized Complexity
-- Quantum Computing Complexity
+### Statistical and Rule-Based Text Analysis
+- Regular expressions
+- Words and sentence tokenization
+- Part of speech tagging, lemmatization (spacy)
+- Word vectors and embeddings
+- Word counts and stop words
 
-### Domain-Specific Algorithms
-- Network Flow Algorithms
-- Computational Geometry
-- String Algorithms
-- Graph Algorithms
-- Parallel Algorithms
+### Machine Learning
+- Loss functions and minimization algorithm for perceptron.
+- Training, testing, and model evaluation
+- Classification algorithms (perceptron, SVM, LSTM RNN)
+- Word vectors and embeddings (GloVe)
+- Topic Modelling (LDA, Top2Vec, UMAP)
+
+## Course Materials
+
+This class does not have a required textbook, but *Applied Text Analysis with Python: Enabling Language-Aware Data Products with Machine Learning* is highly recommended.
 
 ## Assignments
 
 Students will complete:
 
-1. **Theoretical Problem Sets (40%)**: Four problem sets focusing on algorithm design and analysis
-2. **Implementation Projects (30%)**: Two programming projects implementing and analyzing advanced algorithms
-3. **Research Paper (20%)**: An in-depth exploration of a specialized algorithm or algorithmic technique
-4. **Class Participation (10%)**: Including algorithm presentations and discussions
+1. **Weekly Assignments (80%)**: Four problem sets focusing on algorithm design and analysis.
+2. **Final Project (20%)**: Two programming projects implementing and analyzing advanced algorithms.
 
-## Class Structure
+We will be using Google Colab in this class. Detailed information about how to use Google Colab will be available on Brightspace.
 
-Each week consists of:
-- Two 90-minute lectures (Tuesday/Thursday)
-- One optional recitation session (Friday)
-- Weekly office hours
 
-## Prerequisites
+## Assignments and Final Project
 
-- Undergraduate Algorithms (equivalent to CS 330)
-- Discrete Mathematics
-- Strong programming skills (preferably in C++, Java, or Python)
-- Mathematical maturity
+### Assignment 1
 
-## Course Materials
+Questions will include these topics: 
 
-### Required Textbooks
-- "Algorithm Design" by Kleinberg and Tardos
-- "The Algorithm Design Manual" by Skiena
+1. Python fundamentals: math, functions, conditionals, loops
+2. Data structures: strings, lists, dictionaries, DataFrames
+3. Pandas for text data analysis
+4. Basic data visualization with matplotlib/seaborn
 
-### Supplementary Resources
-- "Introduction to Algorithms" by Cormen, Leiserson, Rivest, and Stein
-- "Randomized Algorithms" by Motwani and Raghavan
-- "Computational Geometry: Algorithms and Applications" by de Berg et al.
+**Deadline:** June 2
 
-## Weekly Schedule
 
-| Week | Topic | Reading |
-|------|-------|---------|
-| 1 | Review of Algorithm Analysis | Kleinberg Ch. 1-2 |
-| 2 | Advanced Dynamic Programming | Kleinberg Ch. 6 |
-| 3 | Amortized Analysis | Skiena Ch. 10 |
-| 4 | Randomized Algorithms I | Motwani Ch. 1-2 |
-| 5 | Randomized Algorithms II | Motwani Ch. 3-4 |
-| 6 | NP-Completeness Review | Kleinberg Ch. 8 |
-| 7 | Approximation Algorithms | Kleinberg Ch. 11 |
-| 8 | Network Flow Advanced Topics | Kleinberg Ch. 7 |
-| 9 | Computational Geometry Foundations | de Berg Ch. 1-2 |
-| 10 | String Algorithms | Skiena Ch. 18 |
-| 11 | Advanced Graph Algorithms | Skiena Ch. 15-16 |
-| 12 | Parallel Algorithms | Selected Papers |
-| 13 | Quantum Algorithms | Selected Papers |
-| 14 | Special Topics & Research Presentations | - |
+**Dataset:** [Link](https://drive.google.com/file/d/1e2DdapMxerNXir0TqwZ-EEO0bdDVmFMe/view?usp=sharing)
 
-## Research Project Guidelines
 
-The research project requires students to:
-1. Select an advanced algorithm not covered in depth in the course
-2. Research its theoretical foundations
-3. Implement the algorithm (when applicable)
-4. Analyze its performance empirically
-5. Write a technical paper (8-10 pages) and present findings
+**Assignment 1:** Brightspace
 
-Example topics include:
-- Spectral graph algorithms
-- Algorithmic game theory
-- Machine learning algorithms
-- Cryptographic algorithms
-- Quantum computing algorithms 
+### Assignment 2
+
+Questions will include these topics: 
+1. Regular expressions, word/sentence tokenization
+2. Stop words, word counts, n-grams
+3. POS tagging, lemmatization (spaCy)
+4. TF-IDF transformation
+
+**Deadline:** June 9
+
+
+**Dataset:** [Link]()
+
+
+**Assignment 2:** Brightspace
+
+### Assignment 3
+
+1. Train-test split, evaluation metrics
+2. Perceptron: loss function, gradient descent
+3. Classification models: Perceptron, SVM
+4. Word embeddings (GloVe)
+
+**Deadline:** June 16
+
+
+**Dataset:** [Link]()
+
+
+**Assignment 3:** Brightspace
+
+### Assignment 4
+
+1. Topic Modeling: LDA, Top2Vec, UMAP
+
+**Deadline:** June 23
+
+
+**Dataset:** [Link]()
+
+
+**Assignment 4:** Brightspace
+
+### Final Project
+
+It will cover all topics that we covered in the class. 
+
+**Deadline:** June 29
+
+
+**Dataset:** [Link]()
+
+
+**Research Project:** Brightspace 
+
+### Exercises
+
+I will provide weekly exercises to help you prepare for each assignment. You can find all the exercise files on the class Brightspace page.
+
