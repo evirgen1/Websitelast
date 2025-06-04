@@ -5,7 +5,8 @@ semester: "Summer 2025"
 level: "Undergraduate"
 summary: "An undergraduate-level text mining course that emphasizes using Python and standard libraries to perform basic data analysis, word counts, classification, and identify major trends in text documents."
 syllabus: "/files/syllabi/cs430-fall2023.pdf"
-date: 2025-03-31
+draft: false
+date: 2025-05-31
 layout: "single"
 ---
 
