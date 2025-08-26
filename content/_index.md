@@ -6,9 +6,17 @@ summary: "Learn more about my background, research interests, and academic journ
 
 # About Me
 
-I am a Ph.D. student of Political Science at Binghamton University, SUNY. I received my BA in Political Science at Işık University in 2016, and my MA in Political Science at Binghamton University, SUNY in 2021. My research topics include contentious politics, coups, human rights, and state repression.
+I am a post-doctoral fellow at the Institute for Genocide and Mass Atrocity Studies at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University, SUNY, where I also earned my M.A. in Political Science in 2021. I received my B.A. in Political Science from Işık University in 2016.
 
-Broadly speaking, my current work examines when and how leaders use state apparatus to repress opposition in authoritarian countries. In this venture, I combine innovative quantitative methodologies with in-depth interviews and fieldwork.
+My research focuses on contentious politics, coups, human rights, and state repression. Broadly, I study when and how leaders employ state apparatuses to repress opposition in authoritarian countries, combining quantitative methodologies with in-depth interviews and fieldwork.
+
+My dissertation, [insert title if you’d like], examines repression as a dynamic instrument of domination and a site of ongoing struggle between state leaders, bureaucrats, and society. It is organized into three essays:
+
+The first explores how different coup outcomes shape leaders’ repressive strategies, contrasting large-scale violence following successful coups with subtler but extensive repression after failed ones.
+
+The second investigates the micro-politics of authoritarian governance, showing how regimes use conflict zones to test and discipline provincial governors, thereby embedding repression within state institutions.
+
+The third develops a new methodological framework for building granular event datasets on repression, drawing on NGO human rights reports to capture who is targeted, by which institutions, and through which methods.
 
 ## Research Interests
 
