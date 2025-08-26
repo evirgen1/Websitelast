@@ -19,9 +19,12 @@ The best way to contact me is via email:
 
 You can find me at my university office during regular office hours or by appointment:
 
-**Institute for Genocide and Mass Atrocity Prevention**  
+**Institute for Genocide and Mass Atrocity Prevention** 
+
 Glenn G. Bartle Library, LNG89  
+
 Binghamton University  
+
 Binghamton, NY 13902
 
 
