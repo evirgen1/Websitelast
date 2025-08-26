@@ -21,8 +21,7 @@ You can find me at my university office during regular office hours or by appoin
 
 **Institute for Genocide and Mass Atrocity Prevention** 
 
-Glenn G. Bartle Library, LNG89  
-Binghamton University  
+Glenn G. Bartle Library, LNG89
 
 **Office Hours:** 
 
