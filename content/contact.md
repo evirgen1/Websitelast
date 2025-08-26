@@ -23,8 +23,6 @@ You can find me at my university office during regular office hours or by appoin
 
 Glenn G. Bartle Library, LNG89  
 Binghamton University  
-Binghamton, NY 13902
-
 
 **Office Hours:** 
 
