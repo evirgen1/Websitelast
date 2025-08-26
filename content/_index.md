@@ -12,11 +12,11 @@ My research focuses on contentious politics, coups, human rights, and state repr
 
 My dissertation, examines repression as a dynamic instrument of domination and a site of ongoing struggle between state leaders, bureaucrats, and society. It is organized into three essays:
 
-The first explores how different coup outcomes shape leaders’ repressive strategies, contrasting large-scale violence following successful coups with subtler but extensive repression after failed ones.
+- The first explores how different coup outcomes shape leaders’ repressive strategies, contrasting large-scale violence following successful coups with subtler but extensive repression after failed ones.
 
-The second investigates the micro-politics of authoritarian governance, showing how regimes use conflict zones to test and discipline provincial governors, thereby embedding repression within state institutions.
+- The second investigates the micro-politics of authoritarian governance, showing how regimes use conflict zones to test and discipline provincial governors, thereby embedding repression within state institutions.
 
-The third develops a new methodological framework for building granular event datasets on repression, drawing on NGO human rights reports to capture who is targeted, by which institutions, and through which methods.
+- The third develops a new methodological framework for building granular event datasets on repression, drawing on NGO human rights reports to capture who is targeted, by which institutions, and through which methods.
 
 ## Research Interests
 
