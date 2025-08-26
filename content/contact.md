@@ -38,7 +38,11 @@ For sending physical mail, please use my institute's mailing address:
 
 
 **Yusuf Evirgen**  
+
 Institute for Genocide and Mass Atrocity Prevention (I-GMAP)
+
 Binghamton University
+
 PO Box 6000
+
 Binghamton, NY 13902-6000
