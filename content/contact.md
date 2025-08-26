@@ -19,23 +19,23 @@ The best way to contact me is via email:
 
 You can find me at my university office during regular office hours or by appointment:
 
-**Department of Political Science**  
-Glenn G. Bartle Library, LNG273  
+**Institute for Genocide and Mass Atrocity Prevention**  
+Glenn G. Bartle Library, LNG89  
 Binghamton University  
 Binghamton, NY 13902
 
 
 **Office Hours:** 
-- Wednesdays: 2:30 PM - 4:30 PM
-- Or by appointment
+
+- By appointment
 
 ## Mailing Address
 
-For sending physical mail, please use my department's mailing address:
+For sending physical mail, please use my institute's mailing address:
 
 
 **Yusuf Evirgen**  
-Department of Political Science 
-Binghamton University  
-PO Box 6000 
+Institute for Genocide and Mass Atrocity Prevention (I-GMAP)
+Binghamton University
+PO Box 6000
 Binghamton, NY 13902-6000
