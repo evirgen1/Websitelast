@@ -1,6 +1,7 @@
 baseURL: "https://yusufevirgen.com"
 title: "Yusuf Evirgen"
 theme: "PaperMod"
+googleAnalytics: "G-6BWYY6R983"
 
 # Replace deprecated paginate
 pagination:
