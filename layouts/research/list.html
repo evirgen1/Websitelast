@@ -2,206 +2,238 @@
 
 <header class="page-header">
   <h1>{{ .Title }}</h1>
-  {{- if .Description }}
-  <div class="post-description">
-    {{ .Description }}
-  </div>
-  {{- end }}
-  {{- if .Content }}
-  <div class="post-content">
-    {{ .Content }}
-  </div>
-  {{- end }}
 </header>
 
-<div class="research-container">
-  <section class="featured-publications">
-    <h2>Featured Publications</h2>
-    <div class="publications-grid">
-      {{- range where (where site.RegularPages "Type" "research") "Params.featured" true }}
-      <div class="publication-card">
-        <h3 class="publication-title">
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-        </h3>
-        <div class="publication-meta">
-          <div class="pub-authors">
-            {{- range $index, $author := .Params.authors }}
-            {{- if $index }}, {{ end }}
-            {{- if $author.url }}
-            <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
-            {{- else }}
-            {{ $author.name }}
-            {{- end }}
-            {{- end }}
-          </div>
-          <div class="pub-journal">{{ .Params.publication }}</div>
-          <div class="pub-date">{{ .Date.Format "January 2006" }}</div>
-        </div>
-        <div class="publication-abstract">
-          {{ .Params.abstract | truncate 200 }}
-        </div>
-        <div class="publication-links">
-          <a href="{{ .Permalink }}" class="pub-details">Details</a>
-          {{- range .Params.links }}
-          <a href="{{ .url }}" class="pub-link" target="_blank" rel="noopener">{{ .name }}</a>
-          {{- end }}
-        </div>
-      </div>
-      {{- end }}
-    </div>
-  </section>
+<div class="research-cv">
 
-  <section class="all-publications">
-    <h2>All Publications</h2>
-    {{- $publicationPages := where (where site.RegularPages "Type" "research") "Params.publication_types" "intersect" (slice "journal-article" "conference-paper" "book-chapter") }}
-    <ul class="publication-list">
-      {{- range $publicationPages }}
-      <li class="publication-item">
-        <div class="pub-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
-        <div class="pub-authors">
-          {{- range $index, $author := .Params.authors }}
-          {{- if $index }}, {{ end }}
-          {{- if $author.url }}
-          <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
-          {{- else }}
-          {{ $author.name }}
+  {{/* ── Sort all research pages once ── */}}
+  {{- $allResearch := where site.RegularPages "Type" "research" }}
+
+  {{/* ── Published ── */}}
+  {{- $published := where $allResearch "Params.publication_types" "intersect" (slice "journal-article" "conference-paper" "book-chapter") }}
+
+  {{/* ── Split working papers into Under Review vs. Working Papers ── */}}
+  {{- $allWP        := where $allResearch "Params.publication_types" "intersect" (slice "working-paper" "preprint") }}
+  {{- $underReview  := slice }}
+  {{- $workingPapers := slice }}
+  {{- range $allWP }}
+    {{- if eq .Params.status "Under Review" }}
+      {{- $underReview = $underReview | append . }}
+    {{- else }}
+      {{- $workingPapers = $workingPapers | append . }}
+    {{- end }}
+  {{- end }}
+
+  {{/* track first abstract across all sections so we can open it by default */}}
+  {{- $firstAbstract := true }}
+
+  {{/* ════════════════════════════════
+       PUBLISHED
+       ════════════════════════════════ */}}
+  {{- if $published }}
+  <section class="cv-section">
+    <h2 class="cv-section-title">Published</h2>
+    <ul class="cv-list">
+      {{- range sort $published "Date" "desc" }}
+      <li class="cv-item">
+
+        <div class="cv-entry">
+          {{- range $i, $a := .Params.authors }}{{- if $i }}; {{ end -}}
+            {{- $parts := split $a.name " " -}}
+            {{- $last  := index $parts (sub (len $parts) 1) -}}
+            {{- $first := delimit (first (sub (len $parts) 1) $parts) " " -}}
+            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $last }}, {{ $first }}</strong>
+            {{- else -}}{{ $last }}, {{ $first }}
+            {{- end -}}
           {{- end }}
-          {{- end }}
-        </div>
-        <div class="pub-journal">{{ .Params.publication }}</div>
-        <div class="pub-links">
-          <a href="{{ .Permalink }}" class="pub-details">Details</a>
+          ({{ .Date.Format "2006" }}).
+          <em><strong>{{ .Title }}</strong></em>.{{- with .Params.publication }}
+          {{ . }}.{{ end }}
           {{- range .Params.links }}
-          <a href="{{ .url }}" class="pub-link">{{ .name }}</a>
+          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
           {{- end }}
         </div>
+
+        {{- if .Params.abstract }}
+        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
+          <summary><span class="cv-arrow"></span>Abstract</summary>
+          <p>{{ .Params.abstract }}</p>
+        </details>
+        {{- $firstAbstract = false }}
+        {{- end }}
+
       </li>
       {{- end }}
     </ul>
   </section>
+  {{- end }}
 
-  <section class="working-papers">
-    <h2>Working Papers</h2>
-    <ul class="publication-list">
-      {{- range where (where site.RegularPages "Type" "research") "Params.publication_types" "intersect" (slice "working-paper" "preprint") }}
-      <li class="publication-item">
-        <div class="pub-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
-        <div class="pub-authors">
-          {{- range $index, $author := .Params.authors }}
-          {{- if $index }}, {{ end }}
-          {{- if $author.url }}
-          <a href="{{ $author.url }}" target="_blank" rel="noopener">{{ $author.name }}</a>
-          {{- else }}
-          {{ $author.name }}
+  {{/* ════════════════════════════════
+       UNDER REVIEW
+       ════════════════════════════════ */}}
+  {{- if $underReview }}
+  <section class="cv-section">
+    <h2 class="cv-section-title">Under Review</h2>
+    <ul class="cv-list">
+      {{- range $underReview }}
+      <li class="cv-item">
+
+        <div class="cv-entry">
+          {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
+            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
+            {{- else -}}{{ $a.name }}
+            {{- end -}}
           {{- end }}
-          {{- end }}
-        </div>
-        <div class="pub-status">{{ with .Params.status }}{{ . }}{{ else }}Working Paper{{ end }}</div>
-        <div class="pub-links">
-          <a href="{{ .Permalink }}" class="pub-details">Details</a>
+          &#8220;<em><strong>{{ .Title }}</strong></em>&#8221;
           {{- range .Params.links }}
-          <a href="{{ .url }}" class="pub-link">{{ .name }}</a>
+          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
           {{- end }}
         </div>
+
+        {{- if .Params.abstract }}
+        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
+          <summary><span class="cv-arrow"></span>Abstract</summary>
+          <p>{{ .Params.abstract }}</p>
+        </details>
+        {{- $firstAbstract = false }}
+        {{- end }}
+
       </li>
       {{- end }}
     </ul>
   </section>
+  {{- end }}
+
+  {{/* ════════════════════════════════
+       WORKING PAPERS
+       ════════════════════════════════ */}}
+  {{- if $workingPapers }}
+  <section class="cv-section">
+    <h2 class="cv-section-title">Working Papers</h2>
+    <ul class="cv-list">
+      {{- range $workingPapers }}
+      <li class="cv-item">
+
+        <div class="cv-entry">
+          {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
+            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
+            {{- else -}}{{ $a.name }}
+            {{- end -}}
+          {{- end }}
+          &#8220;<em><strong>{{ .Title }}</strong></em>&#8221;
+          {{- with .Params.status }}
+          [{{ . }}]
+          {{- end }}
+          {{- range .Params.links }}
+          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
+          {{- end }}
+        </div>
+
+        {{- if .Params.abstract }}
+        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
+          <summary><span class="cv-arrow"></span>Abstract</summary>
+          <p>{{ .Params.abstract }}</p>
+        </details>
+        {{- $firstAbstract = false }}
+        {{- end }}
+
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
 </div>
 
 <style>
-  /* Research Page Styling */
-  .research-container {
+  .research-cv {
     margin-top: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
   }
-  
-  .featured-publications {
-    margin-bottom: 3rem;
+
+  .cv-section {
+    margin-bottom: 2.8rem;
   }
-  
-  .publications-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-  
-  .publication-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background-color: var(--entry);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .publication-card:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  
-  .publication-title {
+
+  .cv-section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-  }
-  
-  .publication-meta {
-    margin-bottom: 0.8rem;
-    font-size: 0.9rem;
-    color: var(--secondary);
-  }
-  
-  .publication-abstract {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-  }
-  
-  .publication-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .pub-link, .pub-details {
-    display: inline-block;
-    font-size: 0.85rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    background-color: var(--tertiary);
-    color: var(--primary);
-    text-decoration: none;
-    transition: background-color 0.2s;
-  }
-  
-  .pub-details {
-    background-color: var(--primary);
-    color: var(--theme);
-  }
-  
-  .pub-link:hover, .pub-details:hover {
-    opacity: 0.8;
-  }
-  
-  .year-group {
-    margin-bottom: 2rem;
-  }
-  
-  .year-heading {
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.3rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.35rem;
     border-bottom: 1px solid var(--border);
   }
-  
-  .publication-list {
-    list-style: none;
-    padding: 0;
+
+  .cv-list {
+    list-style: disc;
+    padding-left: 1.4rem;
     margin: 0;
   }
-  
-  .publication-item {
+
+  .cv-item {
     margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
+  }
+
+  .cv-entry {
+    line-height: 1.6;
+  }
+
+  .cv-link {
+    color: #7DA9D9 !important;
+    text-decoration: none;
+    border-bottom: none !important;
+    transition: color 0.15s;
+  }
+
+  .cv-link:hover {
+    color: #a8c8eb !important;
+    text-decoration: underline;
+  }
+
+  .cv-abstract {
+    margin-top: 0.4rem;
+  }
+
+  .cv-abstract summary {
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--secondary);
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    user-select: none;
+    padding: 0;
+  }
+
+  .cv-abstract summary::-webkit-details-marker { display: none; }
+  .cv-abstract summary::marker              { display: none; }
+
+  .cv-arrow::before {
+    content: "▶";
+    font-size: 0.6rem;
+    display: inline-block;
+    margin-right: 0.15rem;
+    vertical-align: middle;
+  }
+
+  details[open].cv-abstract .cv-arrow::before {
+    content: "▼";
+  }
+
+  .cv-abstract p {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+    color: var(--secondary);
+    font-size: 0.92rem;
+    line-height: 1.68;
+  }
+
+  @media (max-width: 600px) {
+    .cv-list { padding-left: 1.1rem; }
+    .cv-item  { margin-bottom: 1.8rem; }
   }
 </style>
 
-{{- end }} 
+{{- end }}
