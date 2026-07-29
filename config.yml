@@ -60,8 +60,6 @@ params:
       url: "https://scholar.google.com/citations?user=8_PutLUAAAAJ&hl=en&oi=ao"
     - name: "twitter"
       url: "https://x.com/evirgenyusuff"
-    - name: "bluesky"
-      url: "https://bsky.app/profile/yusufevirgen.bsky.social"
     - name: "cv"
       url: "cv-evirgen.pdf"
 
