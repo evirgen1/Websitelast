@@ -1,8 +1,6 @@
 {{- define "main" }}
 
-<p class="eyebrow">Get in touch</p>
-<h1 class="page-title">{{ .Title }}</h1>
-{{- with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+<h1 class="page-title">{{ .Params.heading | default .Title }}</h1>
 
 <div class="contact-body">
 

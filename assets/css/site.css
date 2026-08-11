@@ -93,7 +93,11 @@ main { padding: 76px 0 80px; flex: 1 0 auto; }
 
 .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
 
-h1.page-title { font-family: var(--serif); font-size: 2.05rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; margin: 0 0 12px; }
+/* Section pages lead with a single large heading — no eyebrow, no intro copy. */
+h1.page-title {
+  font-family: var(--serif); font-size: 2.5rem; font-weight: 600;
+  letter-spacing: -.025em; line-height: 1.12; margin: 0 0 38px;
+}
 .lede { color: var(--muted); font-size: 1.01rem; margin: 0 0 40px; max-width: 60ch; }
 .lede p { margin: 0 0 10px; }
 .lede p:last-child { margin-bottom: 0; }
@@ -322,5 +326,6 @@ a.course-title:hover { color: var(--accent); }
   .pub-year, .course-term { padding-top: 0; }
   .meta-row { grid-template-columns: 1fr; gap: 2px; }
   .cite-box { flex-direction: column; }
-  h1.page-title, .paper-title { font-size: 1.7rem; }
+  h1.page-title { font-size: 2rem; margin-bottom: 28px; }
+  .paper-title { font-size: 1.7rem; }
 }

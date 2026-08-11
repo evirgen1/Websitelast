@@ -1,6 +1,7 @@
 ---
 title: "Data"
 summary: "Datasets available for research and educational purposes"
+heading: "Datasets"
 ---
 
 # Research Data

@@ -1,8 +1,6 @@
 {{- define "main" }}
 
-<p class="eyebrow">Publications</p>
-<h1 class="page-title">{{ .Title }}</h1>
-{{- with .Content }}<div class="lede">{{ . }}</div>{{ end }}
+<h1 class="page-title">{{ .Params.heading | default .Title }}</h1>
 
 {{- $all := where site.RegularPages "Type" "research" }}
 {{- $published := where $all "Params.publication_types" "intersect" (slice "journal-article" "conference-paper" "book-chapter") }}

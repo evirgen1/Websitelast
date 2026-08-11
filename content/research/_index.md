@@ -1,6 +1,7 @@
 ---
 title: "Research"
 summary: "My research work and publications"
+heading: "Publications"
 ---
 
 ## Publications

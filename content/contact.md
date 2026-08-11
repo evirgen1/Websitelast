@@ -2,6 +2,7 @@
 title: "Contact"
 layout: "contact"
 summary: "Get in touch with me for research collaborations, speaking engagements, or questions about my work."
+heading: "Contact"
 ---
 
 # Contact Information

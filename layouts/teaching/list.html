@@ -1,8 +1,6 @@
 {{- define "main" }}
 
-<p class="eyebrow">Courses</p>
-<h1 class="page-title">{{ .Title }}</h1>
-{{- with .Content }}<div class="lede">{{ . }}</div>{{ end }}
+<h1 class="page-title">{{ .Params.heading | default .Title }}</h1>
 
 {{- $courses := where site.RegularPages "Type" "teaching" }}
 

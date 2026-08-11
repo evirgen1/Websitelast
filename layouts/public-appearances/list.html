@@ -1,12 +1,6 @@
 {{- define "main" }}
 
-<p class="eyebrow">Media &amp; Talks</p>
-<h1 class="page-title">{{ .Title }}</h1>
-{{- with .Content }}
-<div class="lede">{{ . }}</div>
-{{- else }}
-<p class="lede">Interviews, essays, and public talks discussing my research on human rights, state repression, and political violence.</p>
-{{- end }}
+<h1 class="page-title">{{ .Params.heading | default .Title }}</h1>
 
 {{- $items := where site.RegularPages "Type" "public-appearances" }}
 {{- range sort $items "Date" "desc" }}
