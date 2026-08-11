@@ -42,7 +42,7 @@ params:
       - "Human Rights"
       - "Coups"
       - "Contentious Politics"
-      - "Political Violence"
+      - "Refugees"
     methods:
       - "Causal Inference"
       - "Text as Data"
