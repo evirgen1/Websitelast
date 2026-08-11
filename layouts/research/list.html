@@ -1,7 +1,10 @@
 {{- define "main" }}
 
-<header class="page-header">
+<header class="page-header research-page-header">
   <h1>{{ .Title }}</h1>
+  {{- with .Content }}
+  <div class="research-intro">{{ . }}</div>
+  {{- end }}
 </header>
 
 <div class="research-cv">
@@ -24,9 +27,6 @@
     {{- end }}
   {{- end }}
 
-  {{/* track first abstract across all sections so we can open it by default */}}
-  {{- $firstAbstract := true }}
-
   {{/* ════════════════════════════════
        PUBLISHED
        ════════════════════════════════ */}}
@@ -36,32 +36,30 @@
     <ul class="cv-list">
       {{- range sort $published "Date" "desc" }}
       <li class="cv-item">
-
-        <div class="cv-entry">
-          {{- range $i, $a := .Params.authors }}{{- if $i }}; {{ end -}}
-            {{- $parts := split $a.name " " -}}
-            {{- $last  := index $parts (sub (len $parts) 1) -}}
-            {{- $first := delimit (first (sub (len $parts) 1) $parts) " " -}}
-            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $last }}, {{ $first }}</strong>
-            {{- else -}}{{ $last }}, {{ $first }}
-            {{- end -}}
+        <span class="cv-year">{{ .Date.Format "2006" }}</span>
+        <div class="cv-body">
+          <div class="cv-title">{{ .Title }}</div>
+          <div class="cv-authors">
+            {{- range $i, $a := .Params.authors }}{{- if $i }}; {{ end -}}
+              {{- $parts := split $a.name " " -}}
+              {{- $last  := index $parts (sub (len $parts) 1) -}}
+              {{- $first := delimit (first (sub (len $parts) 1) $parts) " " -}}
+              {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $last }}, {{ $first }}</strong>
+              {{- else -}}{{ $last }}, {{ $first }}
+              {{- end -}}
+            {{- end }}
+          </div>
+          {{- with .Params.publication }}
+          <div class="cv-venue">{{ . }}</div>
           {{- end }}
-          ({{ .Date.Format "2006" }}).
-          <em><strong>{{ .Title }}</strong></em>.{{- with .Params.publication }}
-          {{ . }}.{{ end }}
-          {{- range .Params.links }}
-          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
+          {{- with .Params.links }}
+          <div class="cv-links">
+            {{- range . }}
+            <a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+            {{- end }}
+          </div>
           {{- end }}
         </div>
-
-        {{- if .Params.abstract }}
-        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
-          <summary><span class="cv-arrow"></span>Abstract</summary>
-          <p>{{ .Params.abstract }}</p>
-        </details>
-        {{- $firstAbstract = false }}
-        {{- end }}
-
       </li>
       {{- end }}
     </ul>
@@ -77,27 +75,25 @@
     <ul class="cv-list">
       {{- range $underReview }}
       <li class="cv-item">
-
-        <div class="cv-entry">
-          {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
-            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
-            {{- else -}}{{ $a.name }}
-            {{- end -}}
-          {{- end }}
-          &#8220;<em><strong>{{ .Title }}</strong></em>&#8221;
-          {{- range .Params.links }}
-          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
+        <span class="cv-year">{{ .Date.Format "2006" }}</span>
+        <div class="cv-body">
+          <div class="cv-title">{{ .Title }}</div>
+          <div class="cv-authors">
+            {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
+              {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
+              {{- else -}}{{ $a.name }}
+              {{- end -}}
+            {{- end }}
+          </div>
+          <div class="cv-badges"><span class="cv-badge">Under Review</span></div>
+          {{- with .Params.links }}
+          <div class="cv-links">
+            {{- range . }}
+            <a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+            {{- end }}
+          </div>
           {{- end }}
         </div>
-
-        {{- if .Params.abstract }}
-        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
-          <summary><span class="cv-arrow"></span>Abstract</summary>
-          <p>{{ .Params.abstract }}</p>
-        </details>
-        {{- $firstAbstract = false }}
-        {{- end }}
-
       </li>
       {{- end }}
     </ul>
@@ -113,30 +109,27 @@
     <ul class="cv-list">
       {{- range $workingPapers }}
       <li class="cv-item">
-
-        <div class="cv-entry">
-          {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
-            {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
-            {{- else -}}{{ $a.name }}
-            {{- end -}}
-          {{- end }}
-          &#8220;<em><strong>{{ .Title }}</strong></em>&#8221;
+        <span class="cv-year">{{ .Date.Format "2006" }}</span>
+        <div class="cv-body">
+          <div class="cv-title">{{ .Title }}</div>
+          <div class="cv-authors">
+            {{- range $i, $a := .Params.authors }}{{- if $i }} and {{ end -}}
+              {{- if eq $a.name "Yusuf Evirgen" -}}<strong>{{ $a.name }}</strong>
+              {{- else -}}{{ $a.name }}
+              {{- end -}}
+            {{- end }}
+          </div>
           {{- with .Params.status }}
-          [{{ . }}]
+          <div class="cv-badges"><span class="cv-badge">{{ . }}</span></div>
           {{- end }}
-          {{- range .Params.links }}
-          [<a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>]
+          {{- with .Params.links }}
+          <div class="cv-links">
+            {{- range . }}
+            <a class="cv-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+            {{- end }}
+          </div>
           {{- end }}
         </div>
-
-        {{- if .Params.abstract }}
-        <details class="cv-abstract"{{- if $firstAbstract }} open{{- end }}>
-          <summary><span class="cv-arrow"></span>Abstract</summary>
-          <p>{{ .Params.abstract }}</p>
-        </details>
-        {{- $firstAbstract = false }}
-        {{- end }}
-
       </li>
       {{- end }}
     </ul>
@@ -144,96 +137,5 @@
   {{- end }}
 
 </div>
-
-<style>
-  .research-cv {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  .cv-section {
-    margin-bottom: 2.8rem;
-  }
-
-  .cv-section-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .cv-list {
-    list-style: disc;
-    padding-left: 1.4rem;
-    margin: 0;
-  }
-
-  .cv-item {
-    margin-bottom: 1.5rem;
-  }
-
-  .cv-entry {
-    line-height: 1.6;
-  }
-
-  .cv-link {
-    color: #7DA9D9 !important;
-    text-decoration: none;
-    border-bottom: none !important;
-    transition: color 0.15s;
-  }
-
-  .cv-link:hover {
-    color: #a8c8eb !important;
-    text-decoration: underline;
-  }
-
-  .cv-abstract {
-    margin-top: 0.4rem;
-  }
-
-  .cv-abstract summary {
-    cursor: pointer;
-    font-size: 0.88rem;
-    color: var(--secondary);
-    list-style: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    user-select: none;
-    padding: 0;
-  }
-
-  .cv-abstract summary::-webkit-details-marker { display: none; }
-  .cv-abstract summary::marker              { display: none; }
-
-  .cv-arrow::before {
-    content: "▶";
-    font-size: 0.6rem;
-    display: inline-block;
-    margin-right: 0.15rem;
-    vertical-align: middle;
-  }
-
-  details[open].cv-abstract .cv-arrow::before {
-    content: "▼";
-  }
-
-  .cv-abstract p {
-    margin-top: 0.6rem;
-    margin-bottom: 0;
-    color: var(--secondary);
-    font-size: 0.92rem;
-    line-height: 1.68;
-  }
-
-  @media (max-width: 600px) {
-    .cv-list { padding-left: 1.1rem; }
-    .cv-item  { margin-bottom: 1.8rem; }
-  }
-</style>
 
 {{- end }}
