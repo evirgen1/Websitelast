@@ -16,11 +16,6 @@
     {{- with .Params.last_updated }}<span><b>Updated</b> · {{ . }}</span>{{ end }}
   </div>
 
-  {{- with .Params.tags }}
-  <div class="tag-row">
-    {{- range . }}<span class="tag">{{ . | humanize | lower }}</span>{{ end }}
-  </div>
-  {{- end }}
 </div>
 {{- end }}
 {{- else }}

@@ -261,7 +261,7 @@ a.course-title:hover { color: var(--accent); }
 .dataset h3 a { color: var(--text); }
 .dataset:hover h3 a { color: var(--accent); }
 .dataset > p { font-size: .92rem; color: var(--muted); margin: 0 0 14px; }
-.dataset-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: .8rem; color: var(--faint); margin-bottom: 14px; }
+.dataset-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: .8rem; color: var(--faint); margin-bottom: 0; }
 .dataset-meta b { color: var(--muted); font-weight: 600; }
 
 /* --------------------------------------------------------------------------
