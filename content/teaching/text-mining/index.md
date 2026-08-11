@@ -3,6 +3,7 @@ title: "Text Mining"
 course_number: "DIDA 310"
 semester: "Summer 2025"
 level: "Undergraduate"
+role: "Instructor"
 summary: "An undergraduate-level text mining course that emphasizes using Python and standard libraries to perform basic data analysis, word counts, classification, and identify major trends in text documents."
 syllabus: "/files/syllabi/cs430-fall2023.pdf"
 draft: false
