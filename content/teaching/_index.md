@@ -1,6 +1,5 @@
 ---
 title: "Teaching"
-layout: "teaching"
 ---
 
 I teach courses on human rights, contentious politics, and data analytics at both undergraduate and graduate levels.

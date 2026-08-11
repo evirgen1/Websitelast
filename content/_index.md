@@ -1,6 +1,5 @@
 ---
 title: "About Me"
-layout: "about"
 summary: "Learn more about my background, research interests, and academic journey."
 ---
 

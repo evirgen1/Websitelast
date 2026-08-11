@@ -1,0 +1,14 @@
+{{- define "main" }}
+
+<article>
+  <header class="paper-header">
+    <h1 class="paper-title">{{ .Title }}</h1>
+    {{- with .Params.summary }}<p class="lede" style="margin-bottom:0">{{ . }}</p>{{ end }}
+  </header>
+
+  <hr class="rule">
+
+  <div class="prose">{{ .Content }}</div>
+</article>
+
+{{- end }}

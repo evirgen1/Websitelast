@@ -1,0 +1,20 @@
+{{- define "main" }}
+
+<h1 class="page-title">{{ .Title }}</h1>
+{{- with .Content }}<div class="lede">{{ . }}</div>{{ end }}
+
+{{- with .Pages }}
+<ul class="pub-list">
+  {{- range sort . "Date" "desc" }}
+  <li class="pub">
+    <span class="pub-year">{{ if not .Date.IsZero }}{{ .Date.Format "2006" }}{{ end }}</span>
+    <div>
+      <a class="pub-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{- with .Params.summary }}<p class="pub-authors">{{ . }}</p>{{ end }}
+    </div>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}
+
+{{- end }}

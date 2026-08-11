@@ -1,0 +1,61 @@
+{{- define "main" }}
+
+<section class="hero">
+  {{- with site.Params.avatar }}
+  {{- $img := resources.Get . }}
+  {{- if $img }}
+    {{- $img = $img.Fill "300x300 Center" }}
+    <img class="avatar" src="{{ $img.RelPermalink }}" width="124" height="124"
+         alt="{{ site.Params.author | default site.Title }}">
+  {{- else }}
+    <img class="avatar" src="{{ . | relURL }}" width="124" height="124"
+         alt="{{ site.Params.author | default site.Title }}">
+  {{- end }}
+  {{- end }}
+
+  <h1>{{ site.Params.author | default site.Title }}</h1>
+
+  {{- with site.Params.role }}
+  <div class="role">{{ . | markdownify }}</div>
+  {{- end }}
+
+  {{ partial "social.html" . }}
+</section>
+
+<hr class="rule">
+
+<section class="bio">
+  {{- with site.Params.bio }}
+    {{ . | markdownify }}
+  {{- else }}
+    {{ .Content }}
+  {{- end }}
+</section>
+
+{{- with site.Params.interests }}
+<section class="keywords">
+  <div class="section-head">
+    <h2>Research Interests</h2><span class="line"></span>
+  </div>
+
+  {{- with .substantive }}
+  <div class="kw-group primary">
+    <p class="kw-label">Substantive</p>
+    <div class="chips">
+      {{- range . }}<span class="chip">{{ . }}</span>{{ end }}
+    </div>
+  </div>
+  {{- end }}
+
+  {{- with .methods }}
+  <div class="kw-group">
+    <p class="kw-label">Methods</p>
+    <div class="chips">
+      {{- range . }}<span class="chip">{{ . }}</span>{{ end }}
+    </div>
+  </div>
+  {{- end }}
+</section>
+{{- end }}
+
+{{- end }}

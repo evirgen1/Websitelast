@@ -1,82 +1,86 @@
 baseURL: "https://yusufevirgen.com"
 title: "Yusuf Evirgen"
 theme: "PaperMod"
-googleAnalytics: "G-6BWYY6R983"
+services:
+  googleAnalytics:
+    ID: "G-6BWYY6R983"
 
-# Replace deprecated paginate
 pagination:
-  pagerSize: 5
+  pagerSize: 20
 
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-minifyOutput: true
+minify:
+  minifyOutput: true
 
-# Add ignore logs to suppress HTML warnings
 ignoreErrors: ["error-remote-getjson"]
 ignoreLogs: ["warning-goldmark-raw-html"]
 
 params:
   env: production
-  title: "Yusuf Evirgen"
-  description: "Ph.D Candidate at Binghamton University, SUNY"
   author: "Yusuf Evirgen"
-  
-  defaultTheme: auto
-  disableThemeToggle: false
-  ShowShareButtons: false
-  ShowReadingTime: true
-  ShowBreadCrumbs: true
-  ShowPostNavLinks: true
-  ShowCodeCopyButtons: true
-  disableSpecial1stPost: false
-  comments: false
-  
-  # Home Page Settings
-  profileMode:
-    enabled: true
-    title: "Yusuf Evirgen"
-    imageUrl: "profile.jpg"
-    imageWidth: 200
-    imageHeight: 200
-    
-    # Add custom bio text below the profile
-    customBio: |
-      I am a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University in 2025. I received my B.A. in Political Science from Işık University in 2016.
+  description: "Post-doctoral fellow at the Institute for Genocide and Mass Atrocity Prevention, Binghamton University. Research on state repression, human rights, coups, and contentious politics."
 
-      My research focuses on contentious politics, coups, human rights, and state repression. Broadly, I study when and how leaders employ state apparatuses to repress opposition in authoritarian countries, combining quantitative methodologies with in-depth interviews and fieldwork.
+  # ── Home page ────────────────────────────────────────────────
+  avatar: "profile.jpg"          # lives in assets/ or static/
+  role: "Post-doctoral Fellow · **Institute for Genocide and Mass Atrocity Prevention**, Binghamton University"
 
-      My work has been published in the [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp). My work has been recognized with several awards, including Northeastern Political Science Association Best Paper Award in 2024.
+  bio: |
+    I am a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University in 2025. I received my B.A. in Political Science from Işık University in 2016.
 
-  # Social Icons
-  socialIcons:
-    - name: "email"
+    My research focuses on contentious politics, coups, human rights, and state repression. Broadly, I study when and how leaders employ state apparatuses to repress opposition in authoritarian countries, combining quantitative methodologies with in-depth interviews and fieldwork.
+
+    My work has been published in the [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp). My work has been recognized with several awards, including Northeastern Political Science Association Best Paper Award in 2024.
+
+  # ── Research interest chips (home page) ──────────────────────
+  interests:
+    substantive:
+      - "State Repression"
+      - "Human Rights"
+      - "Coups"
+      - "Contentious Politics"
+      - "Political Violence"
+    methods:
+      - "Causal Inference"
+      - "Text as Data"
+      - "Large Language Models"
+      - "Elite Interviews"
+      - "Fieldwork"
+
+  # ── Social icons. Leave a url blank to hide that icon. ───────
+  social:
+    - name: "Email"
       url: "mailto:yevirge1@binghamton.edu"
-    - name: "github"
-      url: "https://github.com/evirgen1"
-    - name: "googlescholar"
+    - name: "Google Scholar"
       url: "https://scholar.google.com/citations?user=8_PutLUAAAAJ&hl=en&oi=ao"
-    - name: "twitter"
+    - name: "X"
       url: "https://x.com/evirgenyusuff"
-    - name: "cv"
-      url: "cv-evirgen.pdf"
+    - name: "Bluesky"
+      url: ""                    # add your handle URL to show the icon
+    - name: "GitHub"
+      url: "https://github.com/evirgen1"
 
-  # Display cover images in lists
-  cover:
-    linkFullImages: true
-    hiddenInList: false
+  cv: "cv-evirgen.pdf"
 
-  # For code highlighting
-  assets:
-    disableHLJS: false
-    favicon: "/favicon.ico"
-    favicon16x16: "/favicon-16x16.png"
-    favicon32x32: "/favicon-32x32.png"
-    apple_touch_icon: "/apple-touch-icon.png"
+  # ── Contact page ─────────────────────────────────────────────
+  email: "yevirge1@binghamton.edu"
+  emailNote: "The best way to reach me. I typically respond within 48 hours on weekdays."
+  office:
+    lines:
+      - "Institute for Genocide and Mass Atrocity Prevention"
+      - "Glenn G. Bartle Library, LNG89"
+      - "Binghamton University"
+    note: "Office hours by appointment."
+  mailing:
+    lines:
+      - "Yusuf Evirgen"
+      - "Institute for Genocide and Mass Atrocity Prevention"
+      - "Binghamton University"
+      - "PO Box 6000, Binghamton, NY 13902-6000"
 
-  # Math rendering with KaTeX
   math: true
 
 menu:
@@ -85,38 +89,39 @@ menu:
       name: "About"
       url: "/"
       weight: 10
-    - identifier: "teaching"
-      name: "Teaching"
-      url: "/teaching/"
-      weight: 20
     - identifier: "research"
       name: "Research"
       url: "/research/"
+      weight: 20
+    - identifier: "teaching"
+      name: "Teaching"
+      url: "/teaching/"
       weight: 30
     - identifier: "data"
       name: "Data"
       url: "/data/"
       weight: 40
     - identifier: "public-appearances"
-      name: "Public Appearances"
+      name: "Media"
       url: "/public-appearances/"
-      weight: 45
+      weight: 50
     - identifier: "contact"
       name: "Contact"
       url: "/contact/"
-      weight: 50
+      weight: 60
 
-# For search functionality
 outputs:
   home:
     - HTML
     - RSS
     - JSON
 
-# For code syntax highlighting
 markup:
+  goldmark:
+    renderer:
+      unsafe: true
   highlight:
     codeFences: true
     guessSyntax: true
     lineNos: false
-    style: "monokai" 
+    noClasses: false
