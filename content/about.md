@@ -5,7 +5,7 @@ summary: "Learn more about my background, research interests, and academic journ
 
 # About Me
 
-I am a post-doctoral researcher in the Department of International Relations at Bilkent University, working on the [ERC Consolidator Grant project COUNSTER](https://counster-project.com/). Before joining Bilkent, I was a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) (I-GMAP) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University, SUNY, in 2025, where I also earned my M.A. in Political Science in 2022. I also hold an M.A. in Political Science from the Social Sciences University of Ankara (2021) and a B.A. in Political Science from Işık University (2016).
+I am a post-doctoral researcher in the Department of International Relations at Bilkent University, working on the ERC Consolidator Grant project [COUNSTER](https://counster-project.com/). Before joining Bilkent, I was a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) (I-GMAP) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University, SUNY, in 2025, where I also earned my M.A. in Political Science in 2022. I also hold an M.A. in Political Science from the Social Sciences University of Ankara (2021) and a B.A. in Political Science from Işık University (2016).
 
 ## Current Position
 
