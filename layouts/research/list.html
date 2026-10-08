@@ -16,7 +16,7 @@
   {{- end }}
 {{- end }}
 
-{{- range slice (dict "title" "Published" "pages" (sort $published "Date" "desc") "showVenue" true "showStatus" false) (dict "title" "Under Review" "pages" (sort $underReview "Date" "desc") "showVenue" false "showStatus" true) (dict "title" "Working Papers" "pages" (sort $working "Date" "desc") "showVenue" false "showStatus" true) }}
+{{- range slice (dict "title" "Published" "pages" (sort $published "Date" "desc") "showVenue" true "showStatus" true) (dict "title" "Under Review" "pages" (sort $underReview "Date" "desc") "showVenue" false "showStatus" true) (dict "title" "Working Papers" "pages" (sort $working "Date" "desc") "showVenue" false "showStatus" true) }}
 {{- if .pages }}
 <section class="pub-section">
   <div class="section-head">

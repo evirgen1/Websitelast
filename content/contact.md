@@ -13,32 +13,27 @@ I welcome inquiries about my research, potential collaborations, or speaking eng
 
 The best way to contact me is via email:
 
-- **Academic Email:** yevirge1@binghamton.edu
+- **Academic Email:** yusuf.evirgen@bilkent.edu.tr
 - **Response Time:** I typically respond to emails within 48 hours on weekdays.
 
 ## Office Address
 
-You can find me at my university office during regular office hours or by appointment:
+**Department of International Relations**
 
-**Institute for Genocide and Mass Atrocity Prevention** 
+Office A317, Bilkent University
 
-Glenn G. Bartle Library, LNG89
-
-**Office Hours:** 
+**Office Hours:**
 
 - By appointment
 
 ## Mailing Address
 
-For sending physical mail, please use my institute's mailing address:
+**Yusuf Evirgen**
 
+Department of International Relations, A317
 
-**Yusuf Evirgen**  
+Faculty of Economics, Administrative and Social Sciences
 
-Institute for Genocide and Mass Atrocity Prevention (I-GMAP)
+Bilkent University
 
-Binghamton University
-
-PO Box 6000
-
-Binghamton, NY 13902-6000
+06800 Bilkent, Ankara, Türkiye

@@ -22,18 +22,20 @@ ignoreLogs: ["warning-goldmark-raw-html"]
 params:
   env: production
   author: "Yusuf Evirgen"
-  description: "Post-doctoral fellow at the Institute for Genocide and Mass Atrocity Prevention, Binghamton University. Research on state repression, human rights, coups, and contentious politics."
+  description: "Post-doctoral researcher on the ERC Consolidator Grant project COUNSTER, Department of International Relations, Bilkent University. Research on state repression, human rights, coups, political violence, and contentious politics."
 
   # ── Home page ────────────────────────────────────────────────
   avatar: "profile.jpg"          # lives in assets/ or static/
-  role: "Post-doctoral Fellow · **Institute for Genocide and Mass Atrocity Prevention**, Binghamton University"
+  role: "Post-doctoral Researcher · **ERC Project [COUNSTER](https://counster-project.com/)**, Department of International Relations, Bilkent University"
 
   bio: |
-    I am a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University in 2025. I received my B.A. in Political Science from Işık University in 2016.
+    I am a post-doctoral researcher in the [Department of International Relations](https://ir.bilkent.edu.tr/) at Bilkent University, working on the ERC Consolidator Grant project **[COUNSTER](https://counster-project.com/)** (*Countering Insurgency/Terrorism: Severing the Ties between Non-State Armed Actors and Their Constituency*). The project examines how governments try to weaken non-state armed actors by targeting the constituencies they claim to represent, through both attractive and repressive strategies. Within [COUNSTER](https://counster-project.com/), I am responsible for collecting data on the concessions and repression strategies that states direct toward these constituencies. To build this data, I web-scrape large text corpora and use large language models to fine-tune local models that extract the relevant information from the text.
+
+    Before joining Bilkent, I was a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) (I-GMAP) at Binghamton University. I received my Ph.D. (2025) and M.A. (2022) in Political Science from Binghamton University, SUNY. I also hold an M.A. in Political Science from the Social Sciences University of Ankara (2021) and a B.A. in Political Science from Işık University (2016), where I later worked as a research assistant in the Department of International Relations.
 
     My research focuses on contentious politics, coups, human rights, and state repression. Broadly, I study when and how leaders employ state apparatuses to repress opposition in authoritarian countries, combining quantitative methodologies with in-depth interviews and fieldwork.
 
-    My work has been published in the [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp). My work has been recognized with several awards, including Northeastern Political Science Association Best Paper Award in 2024.
+    My work has been published in [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp), and my article "Local-Level Refugee Integration within a Context of Multi-Level Governance: Turkey in Comparative Perspective" (with Rabia Karakaya Polat) is forthcoming in [Southeast European and Black Sea Studies](https://www.tandfonline.com/journals/fbss20). My work has been recognized with several awards, including the Northeastern Political Science Association Best Faculty Paper Award in 2024.
 
   # ── Research interest chips (home page) ──────────────────────
   interests:
@@ -53,7 +55,9 @@ params:
   # ── Social icons. Leave a url blank to hide that icon. ───────
   social:
     - name: "Email"
-      url: "mailto:yevirge1@binghamton.edu"
+      url: "mailto:yusuf.evirgen@bilkent.edu.tr"
+    - name: "LinkedIn"
+      url: "https://www.linkedin.com/in/yusuf-evirgen-0490703b8/"
     - name: "Google Scholar"
       url: "https://scholar.google.com/citations?user=8_PutLUAAAAJ&hl=en&oi=ao"
     - name: "X"
@@ -66,20 +70,21 @@ params:
   cv: "cv-evirgen.pdf"
 
   # ── Contact page ─────────────────────────────────────────────
-  email: "yevirge1@binghamton.edu"
+  email: "yusuf.evirgen@bilkent.edu.tr"
   emailNote: "The best way to reach me. I typically respond within 48 hours on weekdays."
   office:
     lines:
-      - "Institute for Genocide and Mass Atrocity Prevention"
-      - "Glenn G. Bartle Library, LNG89"
-      - "Binghamton University"
+      - "Department of International Relations"
+      - "Office A317"
+      - "Bilkent University"
     note: "Office hours by appointment."
   mailing:
     lines:
       - "Yusuf Evirgen"
-      - "Institute for Genocide and Mass Atrocity Prevention"
-      - "Binghamton University"
-      - "PO Box 6000, Binghamton, NY 13902-6000"
+      - "Department of International Relations, A317"
+      - "Faculty of Economics, Administrative and Social Sciences"
+      - "Bilkent University"
+      - "06800 Bilkent, Ankara, Türkiye"
 
   math: true
 
