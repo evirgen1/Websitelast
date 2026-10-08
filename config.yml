@@ -26,7 +26,7 @@ params:
 
   # ── Home page ────────────────────────────────────────────────
   avatar: "profile.jpg"          # lives in assets/ or static/
-  role: "Post-doctoral Researcher · ERC Project COUNSTER, Department of International Relations, Bilkent University"
+  role: "Post-doctoral Researcher · **ERC Project COUNSTER**, Department of International Relations, Bilkent University"
 
   bio: |
     I am a post-doctoral researcher in the Department of International Relations at Bilkent University, working on the ERC Consolidator Grant project [COUNSTER](https://counster-project.com/). The project examines how governments try to weaken non-state armed actors by targeting the constituencies they claim to represent, through both attractive and repressive strategies. Within COUNSTER, I am responsible for collecting data on the concessions and repression strategies that states direct toward these constituencies. To build this data, I web-scrape large text corpora and use large language models to fine-tune local models that extract the relevant information from the text.
