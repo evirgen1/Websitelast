@@ -5,7 +5,7 @@ summary: "Learn more about my background, research interests, and academic journ
 
 # About Me
 
-I am a post-doctoral researcher in the [Department of International Relations](https://ir.bilkent.edu.tr/) at Bilkent University, working on the ERC Consolidator Grant project **[COUNSTER](https://counster-project.com/)** (*Countering Insurgency/Terrorism: Severing the Ties between Non-State Armed Actors and Their Constituency*). Before joining Bilkent, I was a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) (I-GMAP) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University, SUNY, in 2025, where I also earned my M.A. in Political Science in 2022. I also hold an M.A. in Political Science from the Social Sciences University of Ankara (2021) and a B.A. in Political Science from Işık University (2016), where I worked as a research assistant in the Department of International Relations from 2018 to 2020.
+I am a post-doctoral researcher in the [Department of International Relations](https://ir.bilkent.edu.tr/) at Bilkent University, working on the ERC Consolidator Grant project **[COUNSTER](https://counster-project.com/)**. Before joining Bilkent, I was a post-doctoral fellow at [the Institute for Genocide and Mass Atrocity Prevention](https://www.binghamton.edu/i-gmap/index.html) (I-GMAP) at Binghamton University. I completed my Ph.D. in Political Science at Binghamton University, SUNY, in 2025, where I also earned my M.A. in Political Science in 2022. I also hold an M.A. in Political Science from the Social Sciences University of Ankara (2021) and a B.A. in Political Science from Işık University (2016).
 
 ## Current Position
 
@@ -17,7 +17,7 @@ Within the project, I am responsible for collecting data on the concessions and 
 
 My research focuses on contentious politics, coups, human rights, and state repression. Broadly, I study when and how leaders employ state apparatuses to repress opposition in authoritarian countries, combining quantitative methodologies with in-depth interviews and fieldwork.
 
-My work has been published in [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp), and my article "Local-Level Refugee Integration within a Context of Multi-Level Governance: Turkey in Comparative Perspective" (with Rabia Karakaya Polat) is forthcoming in [Southeast European and Black Sea Studies](https://www.tandfonline.com/journals/fbss20).
+My work has been published in [Conflict Management and Peace Science](https://journals.sagepub.com/home/cmp) and is forthcoming in [Southeast European and Black Sea Studies](https://www.tandfonline.com/journals/fbss20).
 
 My dissertation examines repression as a dynamic instrument of domination and a site of ongoing struggle between state leaders, bureaucrats, and society. It is organized into three essays:
 
